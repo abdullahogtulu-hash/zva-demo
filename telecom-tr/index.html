@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NovaTelekom — Kurumsal İletişim Çözümleri</title>
+<style>
+:root{
+  --bg:#0c0708; --surface:#170d0f; --surface2:#1f1013; --border:rgba(255,255,255,.08);
+  --text:#f2e9ea; --muted:#ad9a9d; --accent:#c81e2b; --accent2:#8f1019; --accent-soft:rgba(200,30,43,.16);
+  --gold:#d8a24a; --radius:14px; --shadow:0 10px 40px rgba(0,0,0,.5);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.5}
+a{text-decoration:none}
+.topbar{background:#070405;color:var(--muted);font-size:.78rem;padding:8px 44px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.topbar a{color:var(--muted);margin-left:20px}.topbar a:hover{color:var(--text)}
+nav{position:sticky;top:0;z-index:1000;background:rgba(12,7,8,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 44px;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 20px var(--accent-soft)}
+.logo-txt{font-size:1.35rem;font-weight:800;letter-spacing:-.5px}.logo-txt span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);font-weight:600;font-size:.88rem;position:relative;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .25s}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:14px}
+.btn-ghost{color:var(--text);font-weight:700;font-size:.85rem;padding:9px 16px;border:1px solid var(--border);border-radius:9px;transition:border-color .2s,background .2s}
+.btn-ghost:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn-solid{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:10px 22px;border-radius:9px;font-weight:700;font-size:.85rem;box-shadow:0 6px 18px var(--accent-soft);transition:transform .2s}
+.btn-solid:hover{transform:translateY(-2px)}
+.hero{position:relative;height:560px;overflow:hidden;border-bottom:1px solid var(--border)}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.slide{min-width:100%;height:100%;display:flex;align-items:center;padding:0 80px;position:relative;overflow:hidden}
+.slide::before{content:'';position:absolute;inset:0;background:radial-gradient(1200px 500px at 80% 20%,var(--accent-soft),transparent 60%)}
+.s1{background:linear-gradient(120deg,#0c0708 0%,#2a0d10 60%,#4a0f16 120%)}
+.s2{background:linear-gradient(120deg,#0c0708 0%,#25120a 60%,#3a1e0d 120%)}
+.s3{background:linear-gradient(120deg,#0c0708 0%,#1a0d1e 60%,#2a0f32 120%)}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:44px 44px;opacity:.5;mask-image:radial-gradient(circle at 70% 40%,#000,transparent 70%)}
+.slide-c{position:relative;z-index:2;max-width:600px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);font-size:.74rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 15px;border-radius:50px;margin-bottom:22px}
+.badge .dot-live{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.slide h1{font-size:3rem;font-weight:900;line-height:1.08;margin-bottom:16px;letter-spacing:-1px}
+.slide h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#ef5560);-webkit-background-clip:text;background-clip:text;color:transparent}
+.slide p{font-size:1.05rem;color:var(--muted);margin-bottom:30px;max-width:500px}
+.slide-btns{display:flex;gap:13px}
+.bh{padding:14px 28px;border-radius:10px;font-weight:700;font-size:.92rem;transition:transform .2s}
+.bh-1{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 24px var(--accent-soft)}
+.bh-1:hover{transform:translateY(-2px)}
+.bh-2{background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border)}
+.bh-2:hover{border-color:var(--accent)}
+.hero-visual{position:absolute;right:90px;top:50%;transform:translateY(-50%);z-index:2;width:220px;height:440px;border-radius:34px;background:linear-gradient(150deg,rgba(200,30,43,.25),rgba(23,13,15,.7));backdrop-filter:blur(14px);border:1px solid var(--border);box-shadow:var(--shadow);animation:cf 5s ease-in-out infinite;padding:16px}
+@keyframes cf{0%,100%{transform:translateY(-50%)}50%{transform:translateY(-54%)}}
+.hv-notch{width:80px;height:20px;background:#000;border-radius:0 0 14px 14px;margin:0 auto 18px}
+.hv-screen{height:calc(100% - 38px);border-radius:22px;background:linear-gradient(160deg,#2a0d10,#0c0708);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.hv-5g{font-size:2.6rem;font-weight:900;color:#fff}.hv-lab{font-size:.8rem;color:var(--muted);letter-spacing:2px}
+.hv-bars{display:flex;gap:5px;align-items:flex-end;height:40px;margin-top:8px}
+.hv-bars span{width:8px;background:var(--accent);border-radius:2px;animation:bar 1.4s ease-in-out infinite}
+.hv-bars span:nth-child(1){height:14px;animation-delay:0s}.hv-bars span:nth-child(2){height:24px;animation-delay:.2s}.hv-bars span:nth-child(3){height:34px;animation-delay:.4s}.hv-bars span:nth-child(4){height:40px;animation-delay:.6s}
+@keyframes bar{0%,100%{opacity:.4}50%{opacity:1}}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(255,255,255,.05);border:1px solid var(--border);color:#fff;width:46px;height:46px;border-radius:50%;font-size:1.3rem;cursor:pointer;transition:background .2s}
+.arrow:hover{background:var(--accent-soft)}.arrow.prev{left:22px}.arrow.next{right:22px}
+.dots{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s}
+.dot.active{background:var(--accent);width:26px;border-radius:5px}
+.quick{max-width:1180px;margin:-56px auto 0;padding:0 44px;position:relative;z-index:20}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.qc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:transform .3s,border-color .3s}
+.qc:hover{transform:translateY(-5px);border-color:var(--accent)}
+.qc-ic{width:50px;height:50px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+.qc h3{font-size:.98rem;margin-bottom:5px}.qc p{font-size:.8rem;color:var(--muted)}
+section{padding:70px 44px}
+.sh{text-align:center;margin-bottom:44px}
+.sh .tag{display:inline-block;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.sh h2{font-size:2.1rem;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+.sh p{color:var(--muted)}
+.prod-wrap{max-width:1240px;margin:0 auto;position:relative;padding:0 30px}
+.prod-track{display:flex;gap:20px;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.pcard{flex:0 0 300px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:transform .3s,border-color .3s;position:relative;overflow:hidden}
+.pcard.pop{border-color:var(--accent)}
+.pcard.pop::after{content:'EN POPÜLER';position:absolute;top:16px;right:-30px;background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:1px;padding:4px 34px;transform:rotate(45deg)}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent)}
+.pcard:hover{transform:translateY(-6px);border-color:var(--accent)}
+.pcard .pic{font-size:1.7rem;margin-bottom:12px}
+.pcard h3{font-size:1.1rem;margin-bottom:8px}
+.pcard .gb{font-size:2.6rem;font-weight:900;color:#fff;line-height:1}
+.pcard .gb small{font-size:.9rem;color:var(--muted);font-weight:600}
+.pcard .price{font-size:1.4rem;font-weight:800;color:var(--accent);margin:12px 0 4px}
+.pcard .price small{font-size:.8rem;color:var(--muted);font-weight:500}
+.pcard ul{list-style:none;margin:14px 0 18px}
+.pcard ul li{font-size:.84rem;color:var(--muted);padding:5px 0;display:flex;gap:8px}
+.pcard ul li::before{content:'▹';color:var(--accent);font-weight:800}
+.pcard .go{display:block;text-align:center;background:var(--accent-soft);color:var(--text);padding:11px;border-radius:9px;font-weight:700;font-size:.86rem;border:1px solid var(--border);transition:background .2s}
+.pcard .go:hover{background:var(--accent);color:#fff}
+.pbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:var(--surface2);border:1px solid var(--border);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;transition:all .2s}
+.pbtn:hover{background:var(--accent)}.pbtn.prev{left:-10px}.pbtn.next{right:-10px}
+.stats{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stat{padding:0 20px;border-right:1px solid var(--border)}.stat:last-child{border:none}
+.stat .n{font-size:2.5rem;font-weight:900}.stat .n span{color:var(--accent)}
+.stat .l{font-size:.84rem;color:var(--muted);margin-top:6px}
+.feat-grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fcard{padding:28px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);transition:transform .3s,border-color .3s}
+.fcard:hover{transform:translateY(-5px);border-color:var(--accent)}
+.fcard .fi{width:48px;height:48px;border-radius:11px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px}
+.fcard h3{font-size:1.05rem;margin-bottom:8px}.fcard p{font-size:.87rem;color:var(--muted)}
+.cta{text-align:center;background:linear-gradient(120deg,var(--surface),var(--surface2));border-top:1px solid var(--border)}
+.cta h2{font-size:2.1rem;font-weight:900;margin-bottom:14px}
+.cta p{color:var(--muted);margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
+footer{background:#070405;color:var(--muted);padding:56px 44px 28px;border-top:1px solid var(--border)}
+.fg{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.fg .fdesc{font-size:.85rem;line-height:1.7;margin:14px 0 18px}
+.fsoc{display:flex;gap:10px}
+.fsoc div{width:35px;height:35px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.fsoc div:hover{background:var(--accent)}
+.fcol h4{color:var(--text);font-size:.92rem;margin-bottom:15px}
+.fcol ul{list-style:none}.fcol ul li{margin-bottom:9px}
+.fcol ul li a{color:var(--muted);font-size:.85rem;transition:color .2s}.fcol ul li a:hover{color:var(--text)}
+.fbot{max-width:1180px;margin:0 auto;border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;font-size:.79rem;flex-wrap:wrap;gap:10px}
+.float{position:fixed;bottom:100px;right:28px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:50px;padding:13px 20px;font-weight:700;font-size:.85rem;cursor:pointer;box-shadow:0 6px 24px var(--accent-soft);z-index:900;display:flex;align-items:center;gap:8px;animation:fp 2.6s ease-in-out infinite}
+@keyframes fp{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(max-width:920px){.nav-links{display:none}.quick-grid,.feat-grid,.stats-in,.fg{grid-template-columns:1fr 1fr}.slide{padding:0 30px}.slide h1{font-size:2rem}.hero-visual{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>📞 Çağrı Merkezi 555 &nbsp;·&nbsp; 📶 Türkiye'nin en geniş 5G kapsama alanı</span><span><a href="#">Bayi Bul</a><a href="#">Kurumsal</a><a href="#">EN</a></span></div>
+<nav>
+  <div class="logo"><div class="logo-mark">📡</div><div class="logo-txt">Nova<span>Telekom</span></div></div>
+  <ul class="nav-links"><li><a href="#">Mobil</a></li><li><a href="#">İnternet</a></li><li><a href="#">Cihazlar</a></li><li><a href="#">Kurumsal</a></li><li><a href="#">Destek</a></li></ul>
+  <div class="nav-right"><a href="#" class="btn-ghost">👤 Online İşlemler</a><a href="#" class="btn-solid">Paket Al</a></div>
+</nav>
+
+<div class="hero">
+  <div class="slides" id="slides">
+    <div class="slide s1"><div class="grid-bg"></div>
+      <div class="slide-c"><span class="badge"><span class="dot-live"></span>5G Hazır</span>
+        <h1>Sınırsız Hız,<br/><em>Kesintisiz</em> Bağlantı</h1>
+        <p>Türkiye'nin en geniş 5G ağıyla tanışın. Yüksek hız, düşük gecikme ve her yerde kusursuz iletişim deneyimi.</p>
+        <div class="slide-btns"><a href="#" class="bh bh-1">5G Paketleri</a><a href="#" class="bh bh-2">Kapsama Alanı →</a></div>
+      </div>
+      <div class="hero-visual"><div class="hv-notch"></div><div class="hv-screen"><div class="hv-5g">5G</div><div class="hv-lab">NOVA NET</div><div class="hv-bars"><span></span><span></span><span></span><span></span></div></div></div>
+    </div>
+    <div class="slide s2"><div class="grid-bg"></div>
+      <div class="slide-c"><span class="badge"><span class="dot-live"></span>Fiber İnternet</span>
+        <h1>Evinize<br/><em>1 Gbps</em> Fiber</h1>
+        <p>Kesintisiz fiber internetle film, oyun ve çevrimiçi işleriniz tam performansta. İlk 3 ay yarı fiyatına.</p>
+        <div class="slide-btns"><a href="#" class="bh bh-1">Fiber Başvurusu</a><a href="#" class="bh bh-2">Altyapı Sorgula →</a></div>
+      </div>
+      <div class="hero-visual" style="background:linear-gradient(150deg,rgba(216,162,74,.22),rgba(23,13,15,.7))"><div class="hv-notch"></div><div class="hv-screen" style="background:linear-gradient(160deg,#25120a,#0c0708)"><div class="hv-5g">1<small style="font-size:1rem">Gbps</small></div><div class="hv-lab">FİBER NET</div><div class="hv-bars"><span></span><span></span><span></span><span></span></div></div></div>
+    </div>
+    <div class="slide s3"><div class="grid-bg"></div>
+      <div class="slide-c"><span class="badge"><span class="dot-live"></span>Yeni Cihazlar</span>
+        <h1>En Yeni Telefonlar<br/><em>Taksitle</em> Sizin</h1>
+        <p>Amiral gemisi akıllı telefonlar, cazip paket kampanyalarıyla ve 12 aya varan taksit imkânıyla NovaTelekom'da.</p>
+        <div class="slide-btns"><a href="#" class="bh bh-1">Cihazları Gör</a><a href="#" class="bh bh-2">Kampanyalar →</a></div>
+      </div>
+      <div class="hero-visual" style="background:linear-gradient(150deg,rgba(120,60,180,.22),rgba(23,13,15,.7))"><div class="hv-notch"></div><div class="hv-screen" style="background:linear-gradient(160deg,#1a0d1e,#0c0708)"><div class="hv-5g">📱</div><div class="hv-lab">CİHAZLAR</div><div class="hv-bars"><span></span><span></span><span></span><span></span></div></div></div>
+    </div>
+  </div>
+  <button class="arrow prev" id="prev">‹</button><button class="arrow next" id="next">›</button>
+  <div class="dots" id="dots"><div class="dot active" onclick="go(0)"></div><div class="dot" onclick="go(1)"></div><div class="dot" onclick="go(2)"></div></div>
+</div>
+
+<div class="quick"><div class="quick-grid">
+  <div class="qc"><div class="qc-ic">📱</div><h3>Mobil Paketler</h3><p>Sana uygun tarifeyi bul</p></div>
+  <div class="qc"><div class="qc-ic">🌐</div><h3>Fiber İnternet</h3><p>Eve fiber başvurusu</p></div>
+  <div class="qc"><div class="qc-ic">💳</div><h3>Fatura Öde</h3><p>Hızlı ve güvenli ödeme</p></div>
+  <div class="qc"><div class="qc-ic">🛠️</div><h3>Destek</h3><p>Arıza & teknik yardım</p></div>
+</div></div>
+
+<section>
+  <div class="sh"><div class="tag">Mobil Tarifeler</div><h2>Size Uygun Paketi Seçin</h2><p>Her ihtiyaca uygun, şeffaf ve taahhütsüz seçenekler</p></div>
+  <div class="prod-wrap"><button class="pbtn prev" id="pprev">‹</button><div style="overflow:hidden"><div class="prod-track" id="ptrack"></div></div><button class="pbtn next" id="pnext">›</button></div>
+</section>
+
+<section class="stats"><div class="stats-in">
+  <div class="stat"><div class="n">34<span>M+</span></div><div class="l">Abone</div></div>
+  <div class="stat"><div class="n">%99<span>,9</span></div><div class="l">Ağ Erişilebilirliği</div></div>
+  <div class="stat"><div class="n">81</div><div class="l">İlde 5G</div></div>
+  <div class="stat"><div class="n">7/24</div><div class="l">Müşteri Desteği</div></div>
+</div></section>
+
+<section>
+  <div class="sh"><div class="tag">Neden NovaTelekom</div><h2>Kesintisiz İletişim Deneyimi</h2></div>
+  <div class="feat-grid">
+    <div class="fcard"><div class="fi">⚡</div><h3>Yüksek Hız</h3><p>5G altyapısıyla saniyeler içinde indirin, gecikmesiz bağlanın.</p></div>
+    <div class="fcard"><div class="fi">🗺️</div><h3>Geniş Kapsama</h3><p>81 ilde kesintisiz kapsama, kırsalda bile güçlü sinyal.</p></div>
+    <div class="fcard"><div class="fi">🤖</div><h3>Dijital Asistan</h3><p>Fatura, paket ve arıza sorularınızı 7/24 anında yanıtlıyoruz.</p></div>
+    <div class="fcard"><div class="fi">💠</div><h3>Taahhütsüz</h3><p>İstediğiniz zaman değiştirin; gizli ücret ya da sürpriz yok.</p></div>
+    <div class="fcard"><div class="fi">🎁</div><h3>Sadakat Ödülleri</h3><p>Uzun süreli aboneliklere özel ek GB ve indirim fırsatları.</p></div>
+    <div class="fcard"><div class="fi">🔒</div><h3>Güvenli Ağ</h3><p>Kurumsal düzey güvenlik ile verileriniz her zaman korunur.</p></div>
+  </div>
+</section>
+
+<section class="cta"><h2>Hemen NovaTelekom'a Geçin</h2><p>Numaranızı kaybetmeden taşıyın, ilk faturada %50 indirim kazanın.</p><a href="#" class="bh bh-1">Numaramı Taşı</a></section>
+
+<footer>
+  <div class="fg">
+    <div><div class="logo"><div class="logo-mark" style="width:36px;height:36px">📡</div><div class="logo-txt">Nova<span>Telekom</span></div></div>
+      <p class="fdesc">Türkiye'nin yenilikçi iletişim operatörü. 5G, fiber ve kurumsal çözümlerle her zaman bağlı kalın.</p>
+      <div class="fsoc"><div>📘</div><div>📸</div><div>🐦</div><div>▶️</div></div></div>
+    <div class="fcol"><h4>Mobil</h4><ul><li><a href="#">Tarifeler</a></li><li><a href="#">Ek Paketler</a></li><li><a href="#">Yurt Dışı</a></li><li><a href="#">Numara Taşıma</a></li></ul></div>
+    <div class="fcol"><h4>İnternet</h4><ul><li><a href="#">Fiber</a></li><li><a href="#">Altyapı Sorgu</a></li><li><a href="#">Modemler</a></li><li><a href="#">TV Paketleri</a></li></ul></div>
+    <div class="fcol"><h4>Destek</h4><ul><li><a href="#">Yardım Merkezi</a></li><li><a href="#">Fatura İşlemleri</a></li><li><a href="#">Arıza Bildir</a></li><li><a href="#">Bayi Bul</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 NovaTelekom A.Ş. · BTK yetkili işletmecisi.</span><span>KVKK · Gizlilik · Kullanım Koşulları</span></div>
+</footer>
+
+<button class="float">💬 Size nasıl yardımcı olabiliriz?</button>
+
+<script>
+let idx=0;const total=3;const slides=document.getElementById('slides');const dots=document.querySelectorAll('.dot');
+function go(i){idx=i;slides.style.transform=`translateX(-${i*100}%)`;dots.forEach((d,k)=>d.classList.toggle('active',k===i));}
+document.getElementById('prev').onclick=()=>go((idx-1+total)%total);
+document.getElementById('next').onclick=()=>go((idx+1)%total);
+setInterval(()=>go((idx+1)%total),5500);
+const plans=[
+ {ic:'📱',t:'Başlangıç',gb:'15',pr:'₺199',f:['15 GB internet','1000 dakika','500 SMS','Taahhütsüz'],pop:false},
+ {ic:'🚀',t:'Süper',gb:'40',pr:'₺299',f:['40 GB internet','2000 dakika','Sınırsız SMS','Sosyal medya bedava'],pop:true},
+ {ic:'💎',t:'Premium',gb:'80',pr:'₺399',f:['80 GB internet','Sınırsız dakika','Sınırsız SMS','5G öncelikli'],pop:false},
+ {ic:'♾️',t:'Sınırsız',gb:'∞',pr:'₺549',f:['Sınırsız internet','Sınırsız dakika','Yurt dışı 10 GB','TV+ dahil'],pop:false},
+ {ic:'👨‍👩‍👧',t:'Aile',gb:'120',pr:'₺699',f:['4 hatta 120 GB','Hat başı 30 GB','Aile içi bedava','Ortak fatura'],pop:false},
+ {ic:'🎓',t:'Genç',gb:'50',pr:'₺249',f:['50 GB internet','Öğrenciye özel','Müzik & video bedava','Kampüs avantajı'],pop:false},
+];
+const track=document.getElementById('ptrack');
+plans.forEach(p=>track.insertAdjacentHTML('beforeend',`<div class="pcard ${p.pop?'pop':''}"><div class="pic">${p.ic}</div><h3>${p.t}</h3><div class="gb">${p.gb}<small> GB</small></div><div class="price">${p.pr}<small>/ay</small></div><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><a href="#" class="go">Paketi Seç</a></div>`));
+let pi=0;const cw=320;const vis=Math.max(1,Math.floor((document.querySelector('.prod-wrap').offsetWidth-60)/cw));const pmax=Math.max(0,plans.length-vis);
+document.getElementById('pprev').onclick=()=>{pi=Math.max(0,pi-1);track.style.transform=`translateX(-${pi*cw}px)`;};
+document.getElementById('pnext').onclick=()=>{pi=Math.min(pmax,pi+1);track.style.transform=`translateX(-${pi*cw}px)`;};
+</script>
+<!-- Zoom Virtual Agent — Kampanya Embed -->
+<script type="module" src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js" data-apikey="X_5tQUCYQ9GOgMYLOksajA" data-env="us01"></script>
+<script>(function(){var t=0;var timer=setInterval(function(){t++;var sdk=window.zoomCampaignSdk||window.ZoomCampaignSdk||window.zCCSDK;if(sdk&&typeof sdk.show==='function'){clearInterval(timer);try{if(typeof sdk.waitForReady==='function'){sdk.waitForReady().then(function(){try{sdk.show();}catch(e){}});}else{sdk.show();}}catch(e){}}if(t>40)clearInterval(timer);},500);})();</script>
+</body>
+</html>
