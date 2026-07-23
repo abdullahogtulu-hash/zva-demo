@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Türkiye Üniversitesi – Geleceği Birlikte İnşa Ediyoruz</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--blue:#1e4db7;--gold:#f0a500;--light:#f5f7ff;--white:#fff;--muted:#6b7280;
+}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,22,40,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-logo{font-size:1.3rem;font-weight:800;color:var(--white);letter-spacing:-0.5px}.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-btn{background:var(--gold);color:var(--navy);border:none;padding:9px 22px;border-radius:8px;font-weight:700;font-size:.88rem;cursor:pointer}
+
+/* HERO CAROUSEL */
+.hero{position:relative;height:100vh;overflow:hidden}
+.hero-slides{display:flex;height:100%;transition:transform .8s cubic-bezier(.77,0,.175,1)}
+.hero-slide{min-width:100%;height:100%;position:relative;display:flex;align-items:center;padding:0 10%}
+.slide-1{background:linear-gradient(135deg,#0a1628 0%,#1e4db7 60%,#0a1628 100%)}
+.slide-2{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+.slide-3{background:linear-gradient(135deg,#0d1b2a 0%,#1b4332 60%,#0a1628 100%)}
+.hero-bg-shape{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:600px;height:600px;border-radius:50%;opacity:.12;background:radial-gradient(circle,var(--gold),transparent)}
+.hero-content{position:relative;z-index:2;max-width:620px}
+.hero-tag{display:inline-block;background:rgba(240,165,0,.15);border:1px solid rgba(240,165,0,.3);color:var(--gold);font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:20px;letter-spacing:1px;text-transform:uppercase}
+.hero-content h1{font-size:clamp(2rem,4vw,3.4rem);font-weight:900;color:var(--white);line-height:1.15;margin-bottom:20px}
+.hero-content h1 span{color:var(--gold)}
+.hero-content p{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:32px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--navy);padding:13px 28px;border-radius:10px;font-weight:800;font-size:.95rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,165,0,.35)}
+.btn-ghost{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4);padding:11px 26px;border-radius:10px;font-weight:600;font-size:.95rem;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
+.hero-indicators{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10}
+.indicator{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .3s}
+.indicator.active{background:var(--gold);width:28px;border-radius:4px}
+.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:var(--white);width:48px;height:48px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(4px)}
+.hero-arrow:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.hero-prev{left:24px}.hero-next{right:24px}
+
+/* FLOATING STATS */
+.stats-bar{background:var(--white);display:grid;grid-template-columns:repeat(4,1fr);box-shadow:0 -4px 40px rgba(0,0,0,.12);position:relative;z-index:5}
+.stat-item{padding:28px 20px;text-align:center;border-right:1px solid #eef0f5;position:relative;overflow:hidden}
+.stat-item::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--blue),transparent);opacity:0;transition:opacity .3s}
+.stat-item:hover::before{opacity:.04}
+.stat-num{font-size:2rem;font-weight:900;color:var(--blue);line-height:1}
+.stat-label{font-size:.8rem;color:var(--muted);font-weight:500;margin-top:4px}
+
+/* SECTION */
+.section{padding:80px 48px}
+.section-tag{font-size:.75rem;font-weight:700;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:14px;line-height:1.2}
+.section-sub{font-size:1rem;color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:48px}
+
+/* FACULTIES CAROUSEL */
+.faculty-wrap{overflow:hidden;position:relative}
+.faculty-track{display:flex;gap:24px;transition:transform .6s cubic-bezier(.77,0,.175,1)}
+.faculty-card{min-width:300px;background:var(--white);border-radius:20px;overflow:hidden;border:1px solid #eef0f5;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:transform .25s,box-shadow .25s;cursor:pointer}
+.faculty-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(30,77,183,.14)}
+.faculty-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.fac-eng{background:linear-gradient(135deg,#e3f0ff,#c5d9f7)}
+.fac-med{background:linear-gradient(135deg,#ffe3e3,#ffc5c5)}
+.fac-law{background:linear-gradient(135deg,#fff3cd,#ffe59a)}
+.fac-sci{background:linear-gradient(135deg,#e3fff0,#adf5c8)}
+.fac-art{background:linear-gradient(135deg,#f5e3ff,#e0adf5)}
+.fac-eco{background:linear-gradient(135deg,#fff0e3,#ffd5a8)}
+.faculty-body{padding:20px}
+.faculty-body h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.faculty-body p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.faculty-meta{display:flex;gap:16px}
+.fac-badge{font-size:.75rem;font-weight:600;color:var(--blue);background:#e8f0fe;padding:4px 10px;border-radius:20px}
+.carousel-nav{display:flex;gap:10px;margin-top:24px}
+.c-btn{background:var(--white);border:2px solid #dde3ef;color:var(--navy);width:44px;height:44px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.c-btn:hover{background:var(--blue);color:var(--white);border-color:var(--blue)}
+
+/* ANNOUNCEMENTS */
+.announce-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.announce-list{display:flex;flex-direction:column;gap:16px}
+.announce-item{display:flex;gap:16px;padding:20px;background:var(--light);border-radius:14px;border-left:4px solid var(--blue);transition:transform .2s}
+.announce-item:hover{transform:translateX(4px)}
+.announce-date{min-width:52px;text-align:center;background:var(--blue);color:var(--white);border-radius:10px;padding:8px 6px}
+.announce-date .day{font-size:1.4rem;font-weight:900;line-height:1}
+.announce-date .mon{font-size:.65rem;font-weight:600;text-transform:uppercase;margin-top:2px}
+.announce-info h4{font-size:.9rem;font-weight:700;margin-bottom:4px}
+.announce-info p{font-size:.8rem;color:var(--muted);line-height:1.5}
+.announce-right{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:24px;padding:40px;color:var(--white);position:relative;overflow:hidden}
+.announce-right::before{content:'🎓';position:absolute;right:-20px;bottom:-20px;font-size:8rem;opacity:.15}
+.announce-right h3{font-size:1.5rem;font-weight:800;margin-bottom:12px}
+.announce-right p{opacity:.8;line-height:1.7;margin-bottom:24px;font-size:.92rem}
+.announce-right .deadline{background:rgba(240,165,0,.2);border:1px solid rgba(240,165,0,.4);color:var(--gold);padding:8px 16px;border-radius:8px;font-size:.82rem;font-weight:700;display:inline-block;margin-bottom:20px}
+
+/* CAMPUS */
+.campus-bg{background:linear-gradient(135deg,#0a1628,#1e4db7);padding:80px 48px;position:relative;overflow:hidden}
+.campus-bg::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(240,165,0,.2),transparent);right:-100px;top:-100px;border-radius:50%}
+.campus-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:2}
+.campus-content h2{color:var(--white);font-size:2rem;font-weight:900;margin-bottom:16px}
+.campus-content h2 span{color:var(--gold)}
+.campus-content p{color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:24px}
+.campus-features{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.campus-feat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center}
+.campus-feat .icon{font-size:1.5rem}
+.campus-feat .text{font-size:.85rem;color:rgba(255,255,255,.85);font-weight:600}
+.campus-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.campus-img{border-radius:16px;height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.ci1{background:linear-gradient(135deg,#1e4db7,#0a1628)}
+.ci2{background:linear-gradient(135deg,#f0a500,#e08800)}
+.ci3{background:linear-gradient(135deg,#16a34a,#0d7a32);grid-column:span 2;height:120px}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.7);padding:48px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.foot-logo{font-size:1.3rem;font-weight:800;color:var(--white);margin-bottom:14px}.foot-logo span{color:var(--gold)}
+footer p{font-size:.83rem;line-height:1.7}
+footer h5{color:var(--white);font-size:.88rem;font-weight:700;margin-bottom:14px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+footer ul li a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.82rem;transition:color .2s}
+footer ul li a:hover{color:var(--gold)}
+.foot-bottom{background:#060e1a;color:rgba(255,255,255,.4);font-size:.78rem;padding:16px 48px;display:flex;justify-content:space-between}
+
+@media(max-width:768px){
+  nav{padding:14px 20px}.nav-links{display:none}
+  .hero-content h1{font-size:1.8rem}.hero{padding:0 6%}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .section{padding:48px 20px}
+  .faculty-card{min-width:260px}
+  .announce-grid,.campus-grid{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr 1fr;padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Türkiye <span>Üniversitesi</span></div>
+  <div class="nav-links">
+    <a href="#">Fakülteler</a>
+    <a href="#">Araştırma</a>
+    <a href="#">Öğrenci Hayatı</a>
+    <a href="#">Uluslararası</a>
+    <a href="#">Hakkımızda</a>
+  </div>
+  <button class="nav-btn">Başvur</button>
+</nav>
+
+<!-- HERO CAROUSEL -->
+<section class="hero" id="hero">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide slide-1">
+      <div class="hero-bg-shape"></div>
+      <div class="hero-content">
+        <span class="hero-tag">✨ 2025–2026 Akademik Yılı Başvuruları Açık</span>
+        <h1>Geleceği <span>Birlikte</span><br/>İnşa Ediyoruz</h1>
+        <p>Türkiye'nin köklü üniversitelerinden birinde, dünya standartlarında eğitim alın. 80'den fazla lisans programıyla hayallerinize bir adım daha yaklaşın.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-gold">Başvuru Yap</a>
+          <a href="#" class="btn-ghost">Kampüsü Keşfet</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide slide-2">
+      <div class="hero-bg-shape"></div>
+      <div class="hero-content">
+        <span class="hero-tag">🔬 Araştırma Mükemmelliği</span>
+        <h1>Bilimi <span>İleriye</span><br/>Taşıyoruz</h1>
+        <p>200'den fazla araştırma laboratuvarı ve 50 ulusal/uluslararası projeyle bilimin sınırlarını genişletiyoruz. Siz de bu yolculuğun parçası olun.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-gold">Araştırma Merkezleri</a>
+          <a href="#" class="btn-ghost">Projelerimiz</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide slide-3">
+      <div class="hero-bg-shape"></div>
+      <div class="hero-content">
+        <span class="hero-tag">🌍 Uluslararası Değişim</span>
+        <h1>Dünyaya <span>Açılan</span><br/>Kapınız</h1>
+        <p>60 ülkedeki 150'den fazla partner üniversite ile Erasmus+ ve değişim programlarından yararlanın. Uluslararası kariyer için en doğru adım.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-gold">Değişim Programları</a>
+          <a href="#" class="btn-ghost">Partner Üniversiteler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="hero-arrow hero-prev" id="heroPrev">&#8592;</button>
+  <button class="hero-arrow hero-next" id="heroNext">&#8594;</button>
+  <div class="hero-indicators" id="heroIndicators">
+    <div class="indicator active" data-i="0"></div>
+    <div class="indicator" data-i="1"></div>
+    <div class="indicator" data-i="2"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">48.000+</div><div class="stat-label">Aktif Öğrenci</div></div>
+  <div class="stat-item"><div class="stat-num">2.800+</div><div class="stat-label">Akademik Kadro</div></div>
+  <div class="stat-item"><div class="stat-num">80+</div><div class="stat-label">Lisans Programı</div></div>
+  <div class="stat-item"><div class="stat-num">150+</div><div class="stat-label">Uluslararası Anlaşma</div></div>
+</div>
+
+<!-- FACULTIES -->
+<section class="section">
+  <div class="section-tag">Akademik Birimler</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px">
+    <div>
+      <h2 class="section-title">Fakültelerimiz ve<br/><span style="color:var(--blue)">Programlarımız</span></h2>
+      <p class="section-sub" style="margin-bottom:0">Geniş program yelpazesiyle kendi alanınızda uzmanlaşın.</p>
+    </div>
+    <div class="carousel-nav">
+      <button class="c-btn" id="facPrev">&#8592;</button>
+      <button class="c-btn" id="facNext">&#8594;</button>
+    </div>
+  </div>
+  <div class="faculty-wrap">
+    <div class="faculty-track" id="facTrack">
+      <div class="faculty-card">
+        <div class="faculty-img fac-eng">⚙️</div>
+        <div class="faculty-body">
+          <h3>Mühendislik Fakültesi</h3>
+          <p>Yapay zeka, yazılım mühendisliği ve makine mühendisliği dahil 12 bölüm.</p>
+          <div class="faculty-meta"><span class="fac-badge">12 Bölüm</span><span class="fac-badge">%96 İstihdam</span></div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img fac-med">🏥</div>
+        <div class="faculty-body">
+          <h3>Tıp Fakültesi</h3>
+          <p>Türkiye'nin en köklü tıp fakültelerinden biri. 6 yıllık tıp eğitimi.</p>
+          <div class="faculty-meta"><span class="fac-badge">6 Yıl</span><span class="fac-badge">500+ Yatak</span></div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img fac-law">⚖️</div>
+        <div class="faculty-body">
+          <h3>Hukuk Fakültesi</h3>
+          <p>Uluslararası hukuk, ticaret hukuku ve kamu hukuku alanında uzman kadro.</p>
+          <div class="faculty-meta"><span class="fac-badge">4 Yıl</span><span class="fac-badge">Akredite</span></div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img fac-sci">🔬</div>
+        <div class="faculty-body">
+          <h3>Fen-Edebiyat Fakültesi</h3>
+          <p>Matematik, fizik, kimya, biyoloji ve edebiyat bölümleriyle kapsamlı eğitim.</p>
+          <div class="faculty-meta"><span class="fac-badge">8 Bölüm</span><span class="fac-badge">Araştırma</span></div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img fac-art">🎨</div>
+        <div class="faculty-body">
+          <h3>Güzel Sanatlar</h3>
+          <p>Mimarlık, tasarım, resim ve müzik bölümleriyle yaratıcı potansiyelinizi keşfedin.</p>
+          <div class="faculty-meta"><span class="fac-badge">5 Bölüm</span><span class="fac-badge">Atölyeler</span></div>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img fac-eco">📊</div>
+        <div class="faculty-body">
+          <h3>İktisadi ve İdari Bilimler</h3>
+          <p>İktisat, işletme, uluslararası ilişkiler ve kamu yönetimi programları.</p>
+          <div class="faculty-meta"><span class="fac-badge">6 Bölüm</span><span class="fac-badge">MBA</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section class="section" style="background:var(--light);padding-top:60px;padding-bottom:60px">
+  <div class="section-tag">Duyurular & Başvurular</div>
+  <h2 class="section-title">Güncel <span style="color:var(--blue)">Haberler</span></h2>
+  <div class="announce-grid">
+    <div class="announce-list">
+      <div class="announce-item">
+        <div class="announce-date"><div class="day">15</div><div class="mon">Nis</div></div>
+        <div class="announce-info"><h4>2025-2026 Lisansüstü Başvuruları</h4><p>Yüksek lisans ve doktora programlarına başvuru süreci başladı. Son tarih 30 Nisan.</p></div>
+      </div>
+      <div class="announce-item">
+        <div class="announce-date"><div class="day">20</div><div class="mon">Nis</div></div>
+        <div class="announce-info"><h4>Uluslararası Öğrenci Burs Programı</h4><p>Yurt dışı öğrencilere yönelik burs programına başvurular açıldı.</p></div>
+      </div>
+      <div class="announce-item">
+        <div class="announce-date"><div class="day">25</div><div class="mon">Nis</div></div>
+        <div class="announce-info"><h4>Kariyer Günleri 2025</h4><p>100'den fazla firma ile buluşabileceğiniz kariyer fuarı kampüsümüzde gerçekleşecek.</p></div>
+      </div>
+      <div class="announce-item">
+        <div class="announce-date"><div class="day">02</div><div class="mon">May</div></div>
+        <div class="announce-info"><h4>Bilim Olimpiyatları Kayıtları</h4><p>Matematik, Fizik ve Kimya olimpiyatları için kayıtlar başladı.</p></div>
+      </div>
+    </div>
+    <div class="announce-right">
+      <div class="deadline">⏰ Son Başvuru: 30 Nisan 2025</div>
+      <h3>YKS Başvuru Rehberi</h3>
+      <p>Üniversitemizin tüm lisans programlarına kabul şartları, kontenjanlar ve burs olanakları hakkında kapsamlı rehberimizi inceleyin.</p>
+      <a href="#" class="btn-gold">Rehberi İndir</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPUS -->
+<section class="campus-bg">
+  <div class="campus-grid">
+    <div class="campus-content">
+      <div class="section-tag" style="color:var(--gold)">Kampüs Hayatı</div>
+      <h2>Modern <span>Kampüs</span>,<br/>Sınırsız İmkânlar</h2>
+      <p>800 dönümlük yeşil kampüsümüzde spor tesislerinden kültür merkezlerine, yurtlardan araştırma laboratuvarlarına kadar her şey sizin için hazır.</p>
+      <div class="campus-features">
+        <div class="campus-feat"><span class="icon">🏋️</span><span class="text">Spor Kompleksi</span></div>
+        <div class="campus-feat"><span class="icon">📚</span><span class="text">Merkezi Kütüphane</span></div>
+        <div class="campus-feat"><span class="icon">🏠</span><span class="text">Modern Yurtlar</span></div>
+        <div class="campus-feat"><span class="icon">🎭</span><span class="text">Kültür Merkezi</span></div>
+        <div class="campus-feat"><span class="icon">🍽️</span><span class="text">8 Yemekhane</span></div>
+        <div class="campus-feat"><span class="icon">🚌</span><span class="text">Ücretsiz Servis</span></div>
+      </div>
+    </div>
+    <div class="campus-img-grid">
+      <div class="campus-img ci1">🏛️</div>
+      <div class="campus-img ci2">🔬</div>
+      <div class="campus-img ci3">🏟️</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="foot-logo">Türkiye <span>Üniversitesi</span></div>
+    <p>Atatürk Bulvarı No:1, Ankara 06800<br/>📞 (312) 000 00 00<br/>✉️ bilgi@turkiye.edu.tr</p>
+  </div>
+  <div>
+    <h5>Akademik</h5>
+    <ul>
+      <li><a href="#">Fakülteler</a></li>
+      <li><a href="#">Enstitüler</a></li>
+      <li><a href="#">Araştırma</a></li>
+      <li><a href="#">Yayınlar</a></li>
+    </ul>
+  </div>
+  <div>
+    <h5>Öğrenci</h5>
+    <ul>
+      <li><a href="#">Başvuru</a></li>
+      <li><a href="#">Burslar</a></li>
+      <li><a href="#">Erasmus+</a></li>
+      <li><a href="#">Kariyer</a></li>
+    </ul>
+  </div>
+  <div>
+    <h5>Kurumsal</h5>
+    <ul>
+      <li><a href="#">Hakkımızda</a></li>
+      <li><a href="#">Yönetim</a></li>
+      <li><a href="#">İletişim</a></li>
+      <li><a href="#">Basın</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="foot-bottom">
+  <span>© 2025 Türkiye Üniversitesi. Tüm hakları saklıdır.</span>
+  <span>YÖK Onaylı · Akredite Kurum</span>
+</div>
+
+<script>
+// Hero Carousel
+let cur=0;const slides=document.getElementById('heroSlides');const inds=document.querySelectorAll('.indicator');
+function goTo(n){cur=(n+3)%3;slides.style.transform=`translateX(-${cur*100}%)`;inds.forEach((d,i)=>d.classList.toggle('active',i===cur))}
+document.getElementById('heroPrev').onclick=()=>goTo(cur-1);
+document.getElementById('heroNext').onclick=()=>goTo(cur+1);
+inds.forEach(d=>d.onclick=()=>goTo(+d.dataset.i));
+setInterval(()=>goTo(cur+1),5000);
+
+// Faculty Carousel
+let facPos=0;const facTrack=document.getElementById('facTrack');const cardW=324;
+document.getElementById('facPrev').onclick=()=>{facPos=Math.max(facPos-cardW,0);facTrack.style.transform=`translateX(-${facPos}px)`};
+document.getElementById('facNext').onclick=()=>{const max=(6-3)*cardW;facPos=Math.min(facPos+cardW,max);facTrack.style.transform=`translateX(-${facPos}px)`};
+</script>
+
+<!-- ZOOM VIRTUAL AGENT -->
+<script type="module" src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js" data-apikey="X_5tQUCYQ9GOgMYLOksajA" data-env="us01"></script>
+<script>
+  /* ZVA otomatik açılış — sayfa yüklenince kampanya davetini göstermeye çalışır.
+     NOT: Sohbetin tam otomatik açılması Zoom admin panelindeki Kampanya
+     ayarlarından ("başlatma tetikleyicisi = sayfa yüklendiğinde") kontrol edilir. */
+  (function () {
+    var tries = 0;
+    var timer = setInterval(function () {
+      tries++;
+      var sdk = window.zoomCampaignSdk || window.ZoomCampaignSdk || window.zCCSDK;
+      if (sdk && typeof sdk.show === 'function') {
+        clearInterval(timer);
+        try {
+          if (typeof sdk.waitForReady === 'function') {
+            sdk.waitForReady().then(function () { try { sdk.show(); } catch (e) {} });
+          } else { sdk.show(); }
+        } catch (e) {}
+      }
+      if (tries > 40) clearInterval(timer); /* ~20 sn sonra dur */
+    }, 500);
+  })();
+</script>
+</body>
+</html>
