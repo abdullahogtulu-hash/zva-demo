@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GüvenSigorta — Hayatın Her Anında Yanınızda</title>
+<style>
+:root{
+  --bg:#04100a; --surface:#08180f; --surface2:#0c2116; --border:rgba(255,255,255,.08);
+  --text:#e6f2ea; --muted:#8aa598; --accent:#1c9a4b; --accent2:#0e6631; --accent-soft:rgba(28,154,75,.16);
+  --gold:#c9a44a; --radius:14px; --shadow:0 10px 40px rgba(0,0,0,.5);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.5}
+a{text-decoration:none}
+.topbar{background:#020b06;color:var(--muted);font-size:.78rem;padding:8px 44px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.topbar a{color:var(--muted);margin-left:20px}.topbar a:hover{color:var(--text)}
+nav{position:sticky;top:0;z-index:1000;background:rgba(4,16,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 44px;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 20px var(--accent-soft)}
+.logo-txt{font-size:1.35rem;font-weight:800;letter-spacing:-.5px}.logo-txt span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);font-weight:600;font-size:.88rem;position:relative;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .25s}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:14px}
+.btn-ghost{color:var(--text);font-weight:700;font-size:.85rem;padding:9px 16px;border:1px solid var(--border);border-radius:9px;transition:border-color .2s,background .2s}
+.btn-ghost:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn-solid{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:10px 22px;border-radius:9px;font-weight:700;font-size:.85rem;box-shadow:0 6px 18px var(--accent-soft);transition:transform .2s}
+.btn-solid:hover{transform:translateY(-2px)}
+/* HERO — fade+zoom carousel */
+.hero{position:relative;height:560px;overflow:hidden;border-bottom:1px solid var(--border)}
+.hslide{position:absolute;inset:0;display:flex;align-items:center;padding:0 80px;opacity:0;transform:scale(1.08);transition:opacity .9s ease,transform 6s ease}
+.hslide.active{opacity:1;transform:scale(1)}
+.hslide::before{content:'';position:absolute;inset:0;background:radial-gradient(1200px 500px at 78% 18%,var(--accent-soft),transparent 60%)}
+.s1{background:linear-gradient(120deg,#04100a 0%,#0a2416 60%,#0d3a22 120%)}
+.s2{background:linear-gradient(120deg,#04100a 0%,#0a2020 60%,#0d3438 120%)}
+.s3{background:linear-gradient(120deg,#04100a 0%,#141f0a 60%,#243410 120%)}
+.grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,var(--border) 1px,transparent 1px);background-size:32px 32px;opacity:.5;mask-image:radial-gradient(circle at 72% 42%,#000,transparent 70%)}
+.slide-c{position:relative;z-index:2;max-width:600px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);font-size:.74rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 15px;border-radius:50px;margin-bottom:22px}
+.badge .dot-live{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.hslide h1{font-size:3rem;font-weight:900;line-height:1.08;margin-bottom:16px;letter-spacing:-1px}
+.hslide h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#4fd67f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hslide p{font-size:1.05rem;color:var(--muted);margin-bottom:28px;max-width:500px}
+.slide-btns{display:flex;gap:13px}
+.bh{padding:14px 28px;border-radius:10px;font-weight:700;font-size:.92rem;transition:transform .2s}
+.bh-1{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 24px var(--accent-soft)}
+.bh-1:hover{transform:translateY(-2px)}
+.bh-2{background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border)}
+.bh-2:hover{border-color:var(--accent)}
+.shield{position:absolute;right:110px;top:50%;transform:translateY(-50%);z-index:2;font-size:12rem;filter:drop-shadow(0 10px 40px rgba(28,154,75,.4));animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.06)}}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(255,255,255,.05);border:1px solid var(--border);color:#fff;width:46px;height:46px;border-radius:50%;font-size:1.3rem;cursor:pointer;transition:background .2s}
+.arrow:hover{background:var(--accent-soft)}.arrow.prev{left:22px}.arrow.next{right:22px}
+.dots{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s}
+.dot.active{background:var(--accent);width:26px;border-radius:5px}
+/* QUICK — insurance type selector */
+.quick{max-width:1180px;margin:-56px auto 0;padding:0 44px;position:relative;z-index:20}
+.quick-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.qc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 16px;text-align:center;transition:transform .3s,border-color .3s;cursor:pointer}
+.qc:hover{transform:translateY(-5px);border-color:var(--accent)}
+.qc-ic{width:52px;height:52px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 12px}
+.qc h3{font-size:.9rem;margin-bottom:4px}.qc p{font-size:.74rem;color:var(--muted)}
+section{padding:70px 44px}
+.sh{text-align:center;margin-bottom:44px}
+.sh .tag{display:inline-block;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.sh h2{font-size:2.1rem;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+.sh p{color:var(--muted)}
+/* PRODUCT CAROUSEL — slide */
+.prod-wrap{max-width:1240px;margin:0 auto;position:relative;padding:0 30px}
+.prod-track{display:flex;gap:20px;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.pcard{flex:0 0 290px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:transform .3s,border-color .3s;position:relative;overflow:hidden}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent)}
+.pcard:hover{transform:translateY(-6px);border-color:var(--accent)}
+.pcard .pic{font-size:1.9rem;margin-bottom:14px}
+.pcard h3{font-size:1.12rem;margin-bottom:8px}
+.pcard .desc{font-size:.85rem;color:var(--muted);margin-bottom:14px;min-height:52px}
+.pcard .from{font-size:.78rem;color:var(--muted)}
+.pcard .from b{font-size:1.5rem;color:#fff;font-weight:900}
+.pcard ul{list-style:none;margin:12px 0 18px}
+.pcard ul li{font-size:.83rem;color:var(--muted);padding:5px 0;display:flex;gap:8px}
+.pcard ul li::before{content:'✓';color:var(--accent);font-weight:800}
+.pcard .go{display:block;text-align:center;background:var(--accent-soft);color:var(--text);padding:11px;border-radius:9px;font-weight:700;font-size:.86rem;border:1px solid var(--border);transition:background .2s}
+.pcard .go:hover{background:var(--accent);color:#fff}
+.pbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:var(--surface2);border:1px solid var(--border);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;transition:all .2s}
+.pbtn:hover{background:var(--accent)}.pbtn.prev{left:-10px}.pbtn.next{right:-10px}
+.stats{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stat{padding:0 20px;border-right:1px solid var(--border)}.stat:last-child{border:none}
+.stat .n{font-size:2.5rem;font-weight:900}.stat .n span{color:var(--accent)}
+.stat .l{font-size:.84rem;color:var(--muted);margin-top:6px}
+/* STEPS CAROUSEL — auto slide-up */
+.steps{background:var(--surface2)}
+.steps-track{max-width:760px;margin:0 auto;position:relative;height:150px;overflow:hidden}
+.step{position:absolute;inset:0;display:flex;align-items:center;gap:22px;opacity:0;transform:translateY(40px);transition:opacity .6s,transform .6s}
+.step.active{opacity:1;transform:translateY(0)}
+.step-num{flex:0 0 72px;height:72px;border-radius:20px;background:var(--accent-soft);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;color:var(--accent)}
+.step h3{font-size:1.3rem;margin-bottom:6px}.step p{color:var(--muted);font-size:.95rem}
+.steps-dots{display:flex;justify-content:center;gap:8px;margin-top:26px}
+/* TESTIMONIALS CAROUSEL — fade */
+.testi{max-width:820px;margin:0 auto;position:relative;height:230px}
+.tcard{position:absolute;inset:0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:38px;opacity:0;transition:opacity .7s;text-align:center}
+.tcard.active{opacity:1}
+.tcard .stars{color:var(--gold);font-size:1.1rem;margin-bottom:14px}
+.tcard .txt{font-size:1.1rem;font-style:italic;line-height:1.6;margin-bottom:20px}
+.tcard .who{display:flex;align-items:center;justify-content:center;gap:12px}
+.tcard .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.tcard .nm{font-weight:800}.tcard .rl{font-size:.8rem;color:var(--muted)}
+.testi-dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+/* PARTNERS — infinite marquee carousel */
+.marquee{overflow:hidden;position:relative;padding:26px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)}
+.marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--surface),transparent)}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--surface),transparent)}
+.mtrack{display:flex;gap:60px;width:max-content;animation:scroll 26s linear infinite}
+.mitem{font-size:1.4rem;font-weight:800;color:var(--muted);letter-spacing:-.5px;white-space:nowrap;transition:color .2s}
+.mitem:hover{color:var(--text)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cta{text-align:center;background:linear-gradient(120deg,var(--surface),var(--surface2));border-top:1px solid var(--border)}
+.cta h2{font-size:2.1rem;font-weight:900;margin-bottom:14px}
+.cta p{color:var(--muted);margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
+footer{background:#020b06;color:var(--muted);padding:56px 44px 28px;border-top:1px solid var(--border)}
+.fg{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.fg .fdesc{font-size:.85rem;line-height:1.7;margin:14px 0 18px}
+.fsoc{display:flex;gap:10px}
+.fsoc div{width:35px;height:35px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.fsoc div:hover{background:var(--accent)}
+.fcol h4{color:var(--text);font-size:.92rem;margin-bottom:15px}
+.fcol ul{list-style:none}.fcol ul li{margin-bottom:9px}
+.fcol ul li a{color:var(--muted);font-size:.85rem;transition:color .2s}.fcol ul li a:hover{color:var(--text)}
+.fbot{max-width:1180px;margin:0 auto;border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;font-size:.79rem;flex-wrap:wrap;gap:10px}
+.float{position:fixed;bottom:100px;right:28px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:50px;padding:13px 20px;font-weight:700;font-size:.85rem;cursor:pointer;box-shadow:0 6px 24px var(--accent-soft);z-index:900;display:flex;align-items:center;gap:8px;animation:fp 2.6s ease-in-out infinite}
+@keyframes fp{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(max-width:920px){.nav-links{display:none}.quick-grid{grid-template-columns:1fr 1fr}.feat-grid,.stats-in,.fg{grid-template-columns:1fr 1fr}.hslide{padding:0 30px}.hslide h1{font-size:2rem}.shield{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>📞 Hasar İhbar Hattı 444 11 11 &nbsp;·&nbsp; 🛡️ 7/24 Acil Yardım</span><span><a href="#">Acente Bul</a><a href="#">Hasar Takip</a><a href="#">EN</a></span></div>
+<nav>
+  <div class="logo"><div class="logo-mark">🛡️</div><div class="logo-txt">Güven<span>Sigorta</span></div></div>
+  <ul class="nav-links"><li><a href="#">Sağlık</a></li><li><a href="#">Kasko & Trafik</a></li><li><a href="#">Konut</a></li><li><a href="#">Hayat</a></li><li><a href="#">Seyahat</a></li></ul>
+  <div class="nav-right"><a href="#" class="btn-ghost">📄 Poliçem</a><a href="#" class="btn-solid">Teklif Al</a></div>
+</nav>
+
+<div class="hero">
+  <div id="hero">
+    <div class="hslide s1 active"><div class="grid-bg"></div>
+      <div class="slide-c"><span class="badge"><span class="dot-live"></span>Tüm Sigortalar</span>
+        <h1>Hayatın Her Anında<br/><em>Güvende</em> Kalın</h1>
+        <p>Sağlıktan araca, konuttan seyahate kadar tek çatı altında kapsamlı koruma. Dakikalar içinde teklif alın, anında poliçeleyin.</p>
+        <div class="slide-btns"><a href="#" class="bh bh-1">Hemen Teklif Al</a><a href="#" class="bh bh-2">Ürünler →</a></div>
+      </div><div class="shield">🛡️</div>
+    </div>
+    <div class="hslide s2"><div class="grid-bg"></div>
+      <div class="slide-c"><span class="badge"><span class="dot-live"></span>Tamamlayıcı Sağlık</span>
+        <h1>Sağlığınız<br/><em>Emin</em> Ellerde</h1>
+        <p>Özel hastanelerde düşük katkı payıyla tedavi. 2.000+ anlaşmalı sağlık kuruluşu ve sınırsız doktor muayenesi.</p>
+        <div class="slide-btns"><a href="#" class="bh bh-1">Sağlık Teklifi</a><a href="#" class="bh bh-2">Anlaşmalı Kurumlar →</a></div>
+      </div><div class="shield">❤️</div>
+    </div>
+    <div class="hslide s3"><div class="grid-bg"></div>
+      <div class="slide-c"><span class="badge"><span class="dot-live"></span>Kasko</span>
+        <h1>Aracınız<br/><em>Tam</em> Koruma Altında</h1>
+        <p>Çekici, ikame araç, mini onarım ve cam hasarı dahil geniş teminatlar. Online kaskoda %25 ekstra indirim.</p>
+        <div class="slide-btns"><a href="#" class="bh bh-1">Kasko Teklifi</a><a href="#" class="bh bh-2">Teminatlar →</a></div>
+      </div><div class="shield">🚗</div>
+    </div>
+  </div>
+  <button class="arrow prev" id="prev">‹</button><button class="arrow next" id="next">›</button>
+  <div class="dots" id="dots"><div class="dot active" onclick="hgo(0)"></div><div class="dot" onclick="hgo(1)"></div><div class="dot" onclick="hgo(2)"></div></div>
+</div>
+
+<div class="quick"><div class="quick-grid">
+  <div class="qc"><div class="qc-ic">❤️</div><h3>Sağlık</h3><p>Tamamlayıcı sağlık</p></div>
+  <div class="qc"><div class="qc-ic">🚗</div><h3>Kasko</h3><p>Araç sigortası</p></div>
+  <div class="qc"><div class="qc-ic">🏠</div><h3>Konut</h3><p>Ev & eşya</p></div>
+  <div class="qc"><div class="qc-ic">🌍</div><h3>Seyahat</h3><p>Yurt dışı sağlık</p></div>
+  <div class="qc"><div class="qc-ic">👨‍👩‍👧</div><h3>Hayat</h3><p>Sevdikleriniz için</p></div>
+</div></div>
+
+<section>
+  <div class="sh"><div class="tag">Ürünlerimiz</div><h2>Size Uygun Sigortayı Seçin</h2><p>Şeffaf teminatlar, rekabetçi primler, hızlı hasar ödemesi</p></div>
+  <div class="prod-wrap"><button class="pbtn prev" id="pprev">‹</button><div style="overflow:hidden"><div class="prod-track" id="ptrack"></div></div><button class="pbtn next" id="pnext">›</button></div>
+</section>
+
+<section class="stats"><div class="stats-in">
+  <div class="stat"><div class="n">6<span>M+</span></div><div class="l">Sigortalı</div></div>
+  <div class="stat"><div class="n">2.000<span>+</span></div><div class="l">Anlaşmalı Kurum</div></div>
+  <div class="stat"><div class="n">%96</div><div class="l">Hasar Memnuniyeti</div></div>
+  <div class="stat"><div class="n">24<span>saat</span></div><div class="l">Hasar Ödemesi</div></div>
+</div></section>
+
+<section class="steps">
+  <div class="sh"><div class="tag">Nasıl Çalışır</div><h2>3 Adımda Poliçeniz Hazır</h2></div>
+  <div class="steps-track" id="steps">
+    <div class="step active"><div class="step-num">1</div><div><h3>Bilgilerinizi Girin</h3><p>Birkaç soruyu yanıtlayın, ihtiyacınıza uygun teklifleri saniyeler içinde görün.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div><h3>Teklifleri Karşılaştırın</h3><p>Teminatları ve primleri yan yana inceleyin, size en uygun paketi seçin.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div><h3>Anında Poliçeleyin</h3><p>Online ödemeyle poliçeniz hemen aktif olsun, belgeler e-postanıza gelsin.</p></div></div>
+  </div>
+  <div class="steps-dots dots" id="sdots"><div class="dot active" onclick="sgo(0)"></div><div class="dot" onclick="sgo(1)"></div><div class="dot" onclick="sgo(2)"></div></div>
+</section>
+
+<section>
+  <div class="sh"><div class="tag">Müşteri Yorumları</div><h2>Sigortalılarımız Ne Diyor?</h2></div>
+  <div class="testi" id="testi">
+    <div class="tcard active"><div class="stars">★★★★★</div><div class="txt">"Kaza sonrası hasar sürecim 24 saatte tamamlandı. İkame araç hemen sağlandı, hiç mağdur olmadım. Kesinlikle tavsiye ederim."</div><div class="who"><div class="av">👨</div><div style="text-align:left"><div class="nm">Emre Şahin</div><div class="rl">Kasko Sigortalısı</div></div></div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><div class="txt">"Tamamlayıcı sağlık sigortam sayesinde özel hastanede ameliyat oldum, cebimden neredeyse hiç para çıkmadı. Çok memnunum."</div><div class="who"><div class="av">👩</div><div style="text-align:left"><div class="nm">Selin Aydın</div><div class="rl">Sağlık Sigortalısı</div></div></div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><div class="txt">"Konut sigortamı online 5 dakikada yaptım. Su baskınında eşyalarımın hasarı sorunsuz karşılandı. Dijital asistan da çok yardımcı oldu."</div><div class="who"><div class="av">🧑</div><div style="text-align:left"><div class="nm">Kaan Yücel</div><div class="rl">Konut Sigortalısı</div></div></div></div>
+  </div>
+  <div class="testi-dots dots" id="tdots"><div class="dot active" onclick="tgo(0)"></div><div class="dot" onclick="tgo(1)"></div><div class="dot" onclick="tgo(2)"></div></div>
+</section>
+
+<div class="marquee">
+  <div class="mtrack" id="mtrack"></div>
+</div>
+
+<section class="cta"><h2>Teklifiniz Sadece 2 Dakika Uzağınızda</h2><p>İhtiyacınıza en uygun sigortayı bulun, güvende olmanın huzurunu bugün yaşayın.</p><a href="#" class="bh bh-1">Ücretsiz Teklif Al</a></section>
+
+<footer>
+  <div class="fg">
+    <div><div class="logo"><div class="logo-mark" style="width:36px;height:36px">🛡️</div><div class="logo-txt">Güven<span>Sigorta</span></div></div>
+      <p class="fdesc">Türkiye'nin güvenilir sigorta şirketi. Hayatın her alanında kapsamlı koruma ve hızlı hasar ödemesiyle yanınızdayız.</p>
+      <div class="fsoc"><div>📘</div><div>📸</div><div>🐦</div><div>▶️</div></div></div>
+    <div class="fcol"><h4>Ürünler</h4><ul><li><a href="#">Sağlık</a></li><li><a href="#">Kasko & Trafik</a></li><li><a href="#">Konut</a></li><li><a href="#">Hayat</a></li></ul></div>
+    <div class="fcol"><h4>Hizmetler</h4><ul><li><a href="#">Teklif Al</a></li><li><a href="#">Hasar İhbarı</a></li><li><a href="#">Poliçe Yenileme</a></li><li><a href="#">Acente Bul</a></li></ul></div>
+    <div class="fcol"><h4>Destek</h4><ul><li><a href="#">Yardım Merkezi</a></li><li><a href="#">Sıkça Sorulanlar</a></li><li><a href="#">Anlaşmalı Kurumlar</a></li><li><a href="#">İletişim</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 GüvenSigorta A.Ş. · Hazine ve Maliye Bakanlığı denetimindedir.</span><span>KVKK · Gizlilik · Kullanım Koşulları</span></div>
+</footer>
+
+<button class="float">💬 Size nasıl yardımcı olabiliriz?</button>
+
+<script>
+/* HERO fade+zoom */
+let hi=0;const hs=document.querySelectorAll('.hslide');const hd=document.querySelectorAll('#dots .dot');
+function hgo(i){hi=i;hs.forEach((s,k)=>s.classList.toggle('active',k===i));hd.forEach((d,k)=>d.classList.toggle('active',k===i));}
+document.getElementById('prev').onclick=()=>hgo((hi-1+hs.length)%hs.length);
+document.getElementById('next').onclick=()=>hgo((hi+1)%hs.length);
+setInterval(()=>hgo((hi+1)%hs.length),5000);
+
+/* PRODUCT slide carousel */
+const products=[
+ {ic:'❤️',t:'Tamamlayıcı Sağlık',d:'Özel hastanelerde düşük katkı payıyla tedavi.',p:'₺450',f:['Sınırsız muayene','2.000+ anlaşmalı kurum','Ameliyat teminatı']},
+ {ic:'🚗',t:'Kasko',d:'Aracınız için geniş kapsamlı koruma paketi.',p:'₺380',f:['Çekici & ikame araç','Cam & mini onarım','Online %25 indirim']},
+ {ic:'🛣️',t:'Trafik Sigortası',d:'Zorunlu trafik sigortanızı hemen yenileyin.',p:'₺290',f:['Yasal zorunlu teminat','Anında poliçe','Taksit imkânı']},
+ {ic:'🏠',t:'Konut Sigortası',d:'Eviniz ve eşyalarınız için tam güvence.',p:'₺180',f:['Yangın & su baskını','Hırsızlık teminatı','Deprem ek teminatı']},
+ {ic:'🌍',t:'Seyahat Sağlık',d:'Yurt dışı seyahatlerinizde sağlık güvencesi.',p:'₺120',f:['Vize uyumlu','Acil tıbbi yardım','Bagaj teminatı']},
+ {ic:'👨‍👩‍👧',t:'Hayat Sigortası',d:'Sevdiklerinizin geleceğini güvence altına alın.',p:'₺95',f:['Vefat teminatı','Kritik hastalık','Birikim seçeneği']},
+];
+const track=document.getElementById('ptrack');
+products.forEach(p=>track.insertAdjacentHTML('beforeend',`<div class="pcard"><div class="pic">${p.ic}</div><h3>${p.t}</h3><div class="desc">${p.d}</div><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><div class="from" style="margin-bottom:14px">aylık <b>${p.p}</b>'den itibaren</div><a href="#" class="go">Teklif Al</a></div>`));
+let pi=0;const cw=310;const vis=Math.max(1,Math.floor((document.querySelector('.prod-wrap').offsetWidth-60)/cw));const pmax=Math.max(0,products.length-vis);
+document.getElementById('pprev').onclick=()=>{pi=Math.max(0,pi-1);track.style.transform=`translateX(-${pi*cw}px)`;};
+document.getElementById('pnext').onclick=()=>{pi=Math.min(pmax,pi+1);track.style.transform=`translateX(-${pi*cw}px)`;};
+
+/* STEPS slide-up */
+let si=0;const st=document.querySelectorAll('.step');const sd=document.querySelectorAll('#sdots .dot');
+function sgo(i){si=i;st.forEach((s,k)=>s.classList.toggle('active',k===i));sd.forEach((d,k)=>d.classList.toggle('active',k===i));}
+setInterval(()=>sgo((si+1)%st.length),3200);
+
+/* TESTIMONIALS fade */
+let ti=0;const tc=document.querySelectorAll('.tcard');const td=document.querySelectorAll('#tdots .dot');
+function tgo(i){ti=i;tc.forEach((s,k)=>s.classList.toggle('active',k===i));td.forEach((d,k)=>d.classList.toggle('active',k===i));}
+setInterval(()=>tgo((ti+1)%tc.length),4200);
+
+/* PARTNERS marquee (duplicated for seamless loop) */
+const partners=['🏥 MedLife','🚑 AcilCare','🦷 DentPlus','🏦 AnadoluBank','✈️ SkyAnadolu','🏢 GlobalRe','⚕️ VitaKlinik','🛠️ OtoServis'];
+const mt=document.getElementById('mtrack');
+const html=partners.map(p=>`<div class="mitem">${p}</div>`).join('');
+mt.innerHTML=html+html;
+</script>
+<!-- Zoom Virtual Agent — Kampanya Embed -->
+<script type="module" src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js" data-apikey="X_5tQUCYQ9GOgMYLOksajA" data-env="us01"></script>
+<script>(function(){var t=0;var timer=setInterval(function(){t++;var sdk=window.zoomCampaignSdk||window.ZoomCampaignSdk||window.zCCSDK;if(sdk&&typeof sdk.show==='function'){clearInterval(timer);try{if(typeof sdk.waitForReady==='function'){sdk.waitForReady().then(function(){try{sdk.show();}catch(e){}});}else{sdk.show();}}catch(e){}}if(t>40)clearInterval(timer);},500);})();</script>
+</body>
+</html>
