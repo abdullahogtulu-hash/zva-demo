@@ -487,6 +487,104 @@
       .topbar { display: none; }
       .promo-band { gap: 20px; }
     }
+    /* ─── PROMO CAROUSEL ─── */
+    .ms-carousel { position: relative; max-width: 1280px; margin: 22px auto 0; padding: 0 20px; }
+    .msc-track { display: flex; transition: transform .6s cubic-bezier(.22,.61,.36,1); }
+    .msc-slide { min-width: 100%; border-radius: 18px; padding: 46px 54px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; position: relative; color: #fff; }
+    .msc-1 { background: linear-gradient(120deg,#1558b0,#1a73e8); }
+    .msc-2 { background: linear-gradient(120deg,#c2185b,#ff6600); }
+    .msc-3 { background: linear-gradient(120deg,#0f766e,#16a34a); }
+    .msc-4 { background: linear-gradient(120deg,#4338ca,#7c3aed); }
+    .msc-text { position: relative; z-index: 2; max-width: 560px; }
+    .msc-badge { display: inline-block; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.3); padding: 6px 15px; border-radius: 50px; font-size: .8rem; font-weight: 700; margin-bottom: 14px; }
+    .msc-slide h2 { font-size: 2.1rem; font-weight: 800; line-height: 1.15; margin-bottom: 10px; }
+    .msc-slide h2 em { font-style: normal; color: #ffe08a; }
+    .msc-slide p { font-size: 1rem; opacity: .92; margin-bottom: 22px; }
+    .msc-btn { display: inline-block; background: #fff; color: #1a1a2e; padding: 12px 26px; border-radius: 50px; font-weight: 700; font-size: .9rem; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+    .msc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,.25); }
+    .msc-emoji { font-size: 8rem; opacity: .9; filter: drop-shadow(0 12px 24px rgba(0,0,0,.25)); animation: mscFloat 3.5s ease-in-out infinite; }
+    @keyframes mscFloat { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-16px) rotate(4deg); } }
+    .msc-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(255,255,255,.25); border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; backdrop-filter: blur(6px); transition: background .2s; }
+    .msc-arrow:hover { background: rgba(255,255,255,.45); }
+    .msc-arrow.prev { left: 34px; } .msc-arrow.next { right: 34px; }
+    .msc-dots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .msc-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; transition: all .3s; }
+    .msc-dot.active { background: #fff; width: 28px; border-radius: 5px; }
+    @media (max-width: 760px) { .msc-emoji { display: none; } .msc-slide { padding: 32px 28px; } .msc-slide h2 { font-size: 1.4rem; } .msc-arrow { display: none; } }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ─── LOGIN MODAL ─── */
+    .login-overlay { position: fixed; inset: 0; background: rgba(10,15,25,.55); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+    .login-overlay.open { display: flex; }
+    .login-card { background: #fff; width: 100%; max-width: 400px; border-radius: 18px; padding: 34px; box-shadow: 0 24px 60px rgba(0,0,0,.35); animation: loginIn .35s ease; position: relative; }
+    @keyframes loginIn { from { opacity: 0; transform: translateY(20px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .login-close { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; line-height: 1; }
+    .login-logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .login-logo span { color: var(--accent); }
+    .login-card h3 { font-size: 1.15rem; margin: 10px 0 4px; color: var(--text); }
+    .login-card .sub { font-size: .85rem; color: var(--muted); margin-bottom: 20px; }
+    .login-field { margin-bottom: 14px; }
+    .login-field label { display: block; font-size: .78rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .login-field input { width: 100%; padding: 12px 14px; border: 2px solid var(--border); border-radius: 10px; font-size: .92rem; outline: none; transition: border-color .2s; }
+    .login-field input:focus { border-color: var(--primary); }
+    .login-submit { width: 100%; background: linear-gradient(135deg,var(--primary),var(--primary-dark)); color: #fff; border: none; padding: 13px; border-radius: 10px; font-weight: 700; font-size: .95rem; cursor: pointer; margin-top: 6px; transition: transform .2s; }
+    .login-submit:hover { transform: translateY(-2px); }
+    .login-error { background: #fee2e2; color: #b91c1c; font-size: .82rem; padding: 10px 12px; border-radius: 9px; margin-bottom: 14px; display: none; }
+    .login-error.show { display: block; }
+    .login-demo { margin-top: 16px; font-size: .78rem; color: var(--muted); background: var(--bg); border: 1px dashed var(--border); border-radius: 10px; padding: 11px 13px; line-height: 1.6; }
+    .login-demo b { color: var(--text); }
+    .login-welcome { position: fixed; bottom: 24px; left: 24px; background: var(--success); color: #fff; padding: 13px 20px; border-radius: 12px; font-weight: 600; font-size: .9rem; box-shadow: 0 10px 30px rgba(22,163,74,.4); z-index: 2000; transform: translateY(120%); transition: transform .4s ease; }
+    .login-welcome.show { transform: translateY(0); }
+
+    /* ─── ACCOUNT PAGE ─── */
+    .acct-overlay { position: fixed; inset: 0; background: rgba(10,15,25,.55); backdrop-filter: blur(4px); display: none; align-items: flex-start; justify-content: center; z-index: 2100; padding: 40px 20px; overflow-y: auto; }
+    .acct-overlay.open { display: flex; }
+    .acct-card { background: #fff; width: 100%; max-width: 880px; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.35); animation: loginIn .35s ease; }
+    .acct-head { background: linear-gradient(120deg,var(--primary-dark),var(--primary)); color: #fff; padding: 30px 34px; display: flex; align-items: center; gap: 20px; position: relative; }
+    .acct-close { position: absolute; top: 18px; right: 20px; background: rgba(255,255,255,.2); border: none; color: #fff; width: 34px; height: 34px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; line-height: 1; }
+    .acct-avatar { width: 70px; height: 70px; border-radius: 50%; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-size: 1.9rem; font-weight: 800; flex-shrink: 0; }
+    .acct-head h2 { font-size: 1.5rem; margin: 0; }
+    .acct-head .em { opacity: .9; font-size: .9rem; }
+    .acct-head .since { font-size: .78rem; opacity: .85; margin-top: 5px; }
+    .acct-tabs { display: flex; border-bottom: 1px solid var(--border); padding: 0 18px; gap: 4px; flex-wrap: wrap; }
+    .acct-tab { background: none; border: none; padding: 15px 18px; font-size: .9rem; font-weight: 700; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; }
+    .acct-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .acct-body { padding: 24px 34px; max-height: 50vh; overflow-y: auto; }
+    .acct-panel { display: none; } .acct-panel.active { display: block; }
+    .acct-sumrow { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+    .acct-sum { flex: 1; min-width: 120px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+    .acct-sum .n { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+    .acct-sum .l { font-size: .76rem; color: var(--muted); }
+    .order { border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+    .order-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--border); }
+    .order-no { font-weight: 800; }
+    .order-date { font-size: .82rem; color: var(--muted); }
+    .order-status { font-size: .74rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; align-self: center; }
+    .st-delivered { background: #dcfce7; color: #166534; }
+    .st-shipping { background: #dbeafe; color: #1e40af; }
+    .st-preparing { background: #fef9c3; color: #854d0e; }
+    .order-items { display: flex; flex-direction: column; gap: 9px; }
+    .oi { display: flex; align-items: center; gap: 12px; font-size: .88rem; }
+    .oi .oiem { font-size: 1.5rem; }
+    .oi .qty { color: var(--muted); font-size: .8rem; }
+    .oi .pr { margin-left: auto; font-weight: 700; }
+    .order-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); }
+    .order-foot .track { font-size: .82rem; color: var(--primary); font-weight: 700; text-decoration: none; }
+    .order-total b { font-size: 1.15rem; color: var(--text); }
+    .acct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .acct-info { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px 16px; }
+    .acct-info .lab { font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 5px; }
+    .acct-info .val { font-weight: 700; }
+    .addr { border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+    .addr .tag { display: inline-block; background: var(--primary); color: #fff; font-size: .7rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; margin-bottom: 8px; }
+    .addr .who { font-weight: 700; margin-bottom: 3px; }
+    .addr .line { font-size: .86rem; color: var(--muted); line-height: 1.5; }
+    .acct-logout { margin: 4px 34px 26px; background: #fee2e2; color: #b91c1c; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; width: calc(100% - 68px); }
+    .acct-logout:hover { background: #fecaca; }
+    @media (max-width: 640px) { .acct-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -509,9 +607,9 @@
       <button>🔍 Ara</button>
     </div>
     <div class="header-actions">
-      <a href="#">
+      <a href="#" id="accountBtn" onclick="onAccountClick(event)">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Hesabım
+        <span id="accountLabel">Giriş Yap</span>
       </a>
       <a href="#">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -540,6 +638,51 @@
     <a href="#">Süpermarket</a>
     <a href="#">Fırsatlar 🔥</a>
   </nav>
+
+  <!-- PROMO CAROUSEL -->
+  <section class="ms-carousel" aria-label="Kampanyalar">
+    <div class="msc-track" id="mscTrack">
+      <div class="msc-slide msc-1">
+        <div class="msc-text">
+          <span class="msc-badge">⚡ Süper Fırsat Günleri</span>
+          <h2>Elektronikte <em>%50</em>'ye Varan İndirim</h2>
+          <p>Telefon, bilgisayar, kulaklık ve daha fazlasında kaçırılmayacak fiyatlar.</p>
+          <a href="#" class="msc-btn">Hemen İncele</a>
+        </div>
+        <div class="msc-emoji">📱</div>
+      </div>
+      <div class="msc-slide msc-2">
+        <div class="msc-text">
+          <span class="msc-badge">👗 Yeni Sezon Modası</span>
+          <h2>Kadın & Erkek Giyimde <em>Sezon Sonu</em></h2>
+          <p>Binlerce yeni ürün, sepette ekstra indirim ve ücretsiz iade avantajı.</p>
+          <a href="#" class="msc-btn">Koleksiyonu Gör</a>
+        </div>
+        <div class="msc-emoji">🛍️</div>
+      </div>
+      <div class="msc-slide msc-3">
+        <div class="msc-text">
+          <span class="msc-badge">🏠 Ev & Yaşam</span>
+          <h2>Evini <em>Yenile</em>, Bütçeni Koru</h2>
+          <p>Mobilya, dekorasyon ve mutfak ürünlerinde 12 taksit fırsatı.</p>
+          <a href="#" class="msc-btn">Fırsatları Keşfet</a>
+        </div>
+        <div class="msc-emoji">🛋️</div>
+      </div>
+      <div class="msc-slide msc-4">
+        <div class="msc-text">
+          <span class="msc-badge">🚚 Hızlı Teslimat</span>
+          <h2>Bugün Sipariş Ver, <em>Yarın</em> Kapında</h2>
+          <p>500₺ ve üzeri alışverişlerde Türkiye geneli ücretsiz kargo.</p>
+          <a href="#" class="msc-btn">Alışverişe Başla</a>
+        </div>
+        <div class="msc-emoji">📦</div>
+      </div>
+    </div>
+    <button class="msc-arrow prev" id="mscPrev" aria-label="Önceki">‹</button>
+    <button class="msc-arrow next" id="mscNext" aria-label="Sonraki">›</button>
+    <div class="msc-dots" id="mscDots"></div>
+  </section>
 
   <!-- HERO -->
   <section class="hero">
@@ -863,6 +1006,216 @@
       <span>🔒 SSL Güvenli Alışveriş</span>
     </div>
   </footer>
+
+  <!-- LOGIN MODAL -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <button class="login-close" onclick="closeLogin()" aria-label="Kapat">&times;</button>
+      <div class="login-logo">Market<span>Sepeti</span></div>
+      <h3>Hesabınıza Giriş Yapın</h3>
+      <div class="sub">Hoş geldiniz! Devam etmek için giriş yapın.</div>
+      <div class="login-error" id="loginError">E-posta veya şifre hatalı. Lütfen tekrar deneyin.</div>
+      <form id="loginForm" autocomplete="off">
+        <div class="login-field">
+          <label for="loginEmail">E-posta</label>
+          <input type="email" id="loginEmail" placeholder="ornek@eposta.com" required />
+        </div>
+        <div class="login-field">
+          <label for="loginPass">Şifre</label>
+          <input type="password" id="loginPass" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="login-submit">Giriş Yap</button>
+      </form>
+    </div>
+  </div>
+  <div class="login-welcome" id="loginWelcome"></div>
+
+  <!-- ACCOUNT PAGE -->
+  <div class="acct-overlay" id="acctOverlay">
+    <div class="acct-card">
+      <div class="acct-head">
+        <button class="acct-close" onclick="closeAccount()" aria-label="Kapat">&times;</button>
+        <div class="acct-avatar" id="acctAvatar">A</div>
+        <div>
+          <h2 id="acctName">—</h2>
+          <div class="em" id="acctEmail">—</div>
+          <div class="since">Üyelik: Ocak 2023 · MarketSepeti Plus üyesi ⭐</div>
+        </div>
+      </div>
+      <div class="acct-tabs">
+        <button class="acct-tab active" data-tab="orders" onclick="acctTab('orders')">📦 Siparişlerim</button>
+        <button class="acct-tab" data-tab="details" onclick="acctTab('details')">👤 Hesap Bilgilerim</button>
+        <button class="acct-tab" data-tab="address" onclick="acctTab('address')">📍 Adreslerim</button>
+      </div>
+      <div class="acct-body">
+        <div class="acct-panel active" id="panel-orders"></div>
+        <div class="acct-panel" id="panel-details"></div>
+        <div class="acct-panel" id="panel-address"></div>
+      </div>
+      <button class="acct-logout" onclick="msLogout()">🚪 Çıkış Yap</button>
+    </div>
+  </div>
+
+  <script>
+    /* ── DEMO KULLANICI VERİTABANI (istemci tarafı) ── */
+    var MS_USERS = [
+      { email: "abdullah.ogtulu@zoom.us", password: "Demo123", name: "Abdullah Ogtulu" }
+    ];
+    /* ── SAHTE HESAP & SİPARİŞ VERİSİ (demo) ── */
+    var MS_PROFILE = {
+      phone: "+90 532 123 45 67",
+      memberSince: "Ocak 2023",
+      tier: "MarketSepeti Plus ⭐",
+      points: "2.480",
+      orderCount: "14",
+      totalSpent: "₺48.760"
+    };
+    var MS_ORDERS = [
+      { no: "MS-2026-004821", date: "18 Temmuz 2026", status: "preparing", statusText: "Hazırlanıyor",
+        items: [ { em: "🎧", name: "Sony WH-1000XM5 Kulaklık", qty: 1, pr: "₺4.299" }, { em: "🔌", name: "USB-C Hızlı Şarj Adaptörü", qty: 2, pr: "₺598" } ], total: "₺4.897" },
+      { no: "MS-2026-004503", date: "2 Temmuz 2026", status: "shipping", statusText: "Kargoda",
+        items: [ { em: "👟", name: "Nike Air Max 270 Spor Ayakkabı", qty: 1, pr: "₺3.599" } ], total: "₺3.599" },
+      { no: "MS-2026-003944", date: "21 Haziran 2026", status: "delivered", statusText: "Teslim Edildi",
+        items: [ { em: "📱", name: "Samsung Galaxy S25 128GB", qty: 1, pr: "₺32.999" }, { em: "🛡️", name: "Ekran Koruyucu Cam", qty: 1, pr: "₺149" } ], total: "₺33.148" },
+      { no: "MS-2026-003310", date: "9 Mayıs 2026", status: "delivered", statusText: "Teslim Edildi",
+        items: [ { em: "☕", name: "Philips Espresso Makinesi", qty: 1, pr: "₺6.750" }, { em: "🍫", name: "Kapsül Kahve (50 adet)", qty: 3, pr: "₺897" } ], total: "₺7.647" },
+      { no: "MS-2026-002785", date: "27 Mart 2026", status: "delivered", statusText: "Teslim Edildi",
+        items: [ { em: "📚", name: "Yılın Çok Satan Kitap Seti", qty: 1, pr: "₺540" } ], total: "₺540" }
+    ];
+    var MS_ADDRESSES = [
+      { tag: "Ev", who: "Abdullah Ogtulu", line: "Levent Mah. Büyükdere Cad. No:128 D:14<br/>Beşiktaş / İstanbul · 34330" },
+      { tag: "İş", who: "Abdullah Ogtulu — Zoom", line: "Maslak Mah. Ahi Evran Cad. No:6 Kat:12<br/>Sarıyer / İstanbul · 34485" }
+    ];
+    var MS_SESSION_KEY = "ms_current_user";
+
+    function msGetUser() {
+      try { return JSON.parse(localStorage.getItem(MS_SESSION_KEY)); } catch (e) { return null; }
+    }
+    function msRenderAuth() {
+      var u = msGetUser();
+      var label = document.getElementById("accountLabel");
+      if (u) { label.textContent = "Merhaba, " + u.name.split(" ")[0]; }
+      else { label.textContent = "Giriş Yap"; }
+    }
+    function onAccountClick(e) {
+      e.preventDefault();
+      var u = msGetUser();
+      if (u) { openAccount(u); } else { openLogin(); }
+    }
+    function msLogout() {
+      localStorage.removeItem(MS_SESSION_KEY);
+      closeAccount();
+      msRenderAuth();
+    }
+    /* ── ACCOUNT PAGE RENDER ── */
+    function openAccount(u) {
+      document.getElementById("acctName").textContent = u.name;
+      document.getElementById("acctEmail").textContent = u.email;
+      document.getElementById("acctAvatar").textContent = u.name.charAt(0).toUpperCase();
+
+      var statusClass = { preparing: "st-preparing", shipping: "st-shipping", delivered: "st-delivered" };
+      var ordersHtml = '<div class="acct-sumrow">' +
+        '<div class="acct-sum"><div class="n">' + MS_PROFILE.orderCount + '</div><div class="l">Toplam Sipariş</div></div>' +
+        '<div class="acct-sum"><div class="n">' + MS_PROFILE.totalSpent + '</div><div class="l">Toplam Harcama</div></div>' +
+        '<div class="acct-sum"><div class="n">' + MS_PROFILE.points + '</div><div class="l">Puan</div></div></div>';
+      MS_ORDERS.forEach(function (o) {
+        ordersHtml += '<div class="order"><div class="order-top">' +
+          '<div><div class="order-no">' + o.no + '</div><div class="order-date">' + o.date + '</div></div>' +
+          '<div class="order-status ' + statusClass[o.status] + '">' + o.statusText + '</div></div>' +
+          '<div class="order-items">' +
+          o.items.map(function (it) {
+            return '<div class="oi"><span class="oiem">' + it.em + '</span><span>' + it.name + '</span>' +
+              '<span class="qty">x' + it.qty + '</span><span class="pr">' + it.pr + '</span></div>';
+          }).join('') +
+          '</div><div class="order-foot"><a href="#" class="track">Siparişi Takip Et →</a>' +
+          '<div class="order-total">Toplam: <b>' + o.total + '</b></div></div></div>';
+      });
+      document.getElementById("panel-orders").innerHTML = ordersHtml;
+
+      document.getElementById("panel-details").innerHTML = '<div class="acct-grid">' +
+        '<div class="acct-info"><div class="lab">Ad Soyad</div><div class="val">' + u.name + '</div></div>' +
+        '<div class="acct-info"><div class="lab">E-posta</div><div class="val">' + u.email + '</div></div>' +
+        '<div class="acct-info"><div class="lab">Telefon</div><div class="val">' + MS_PROFILE.phone + '</div></div>' +
+        '<div class="acct-info"><div class="lab">Üyelik Tarihi</div><div class="val">' + MS_PROFILE.memberSince + '</div></div>' +
+        '<div class="acct-info"><div class="lab">Üyelik Tipi</div><div class="val">' + MS_PROFILE.tier + '</div></div>' +
+        '<div class="acct-info"><div class="lab">Puan Bakiyesi</div><div class="val">' + MS_PROFILE.points + ' puan</div></div>' +
+        '</div>';
+
+      document.getElementById("panel-address").innerHTML = MS_ADDRESSES.map(function (a) {
+        return '<div class="addr"><span class="tag">' + a.tag + '</span><div class="who">' + a.who + '</div><div class="line">' + a.line + '</div></div>';
+      }).join('');
+
+      acctTab('orders');
+      document.getElementById("acctOverlay").classList.add("open");
+    }
+    function closeAccount() { document.getElementById("acctOverlay").classList.remove("open"); }
+    function acctTab(name) {
+      document.querySelectorAll(".acct-tab").forEach(function (t) { t.classList.toggle("active", t.dataset.tab === name); });
+      document.querySelectorAll(".acct-panel").forEach(function (p) { p.classList.toggle("active", p.id === "panel-" + name); });
+    }
+    document.getElementById("acctOverlay").addEventListener("click", function (e) { if (e.target === this) closeAccount(); });
+    function openLogin() { document.getElementById("loginOverlay").classList.add("open"); }
+    function closeLogin() {
+      document.getElementById("loginOverlay").classList.remove("open");
+      document.getElementById("loginError").classList.remove("show");
+      document.getElementById("loginForm").reset();
+    }
+    document.getElementById("loginOverlay").addEventListener("click", function (e) {
+      if (e.target === this) closeLogin();
+    });
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      var pass = document.getElementById("loginPass").value;
+      var match = MS_USERS.find(function (x) { return x.email.toLowerCase() === email && x.password === pass; });
+      if (match) {
+        localStorage.setItem(MS_SESSION_KEY, JSON.stringify({ email: match.email, name: match.name }));
+        closeLogin();
+        msRenderAuth();
+        var w = document.getElementById("loginWelcome");
+        w.textContent = "✓ Hoş geldiniz, " + match.name + "!";
+        w.classList.add("show");
+        setTimeout(function () { w.classList.remove("show"); }, 4000);
+      } else {
+        document.getElementById("loginError").classList.add("show");
+      }
+    });
+    msRenderAuth();
+
+    /* ── PROMO CAROUSEL ── */
+    (function () {
+      var track = document.getElementById("mscTrack");
+      var slides = track.children.length;
+      var dotsWrap = document.getElementById("mscDots");
+      var i = 0;
+      for (var k = 0; k < slides; k++) {
+        var d = document.createElement("div");
+        d.className = "msc-dot" + (k === 0 ? " active" : "");
+        d.dataset.k = k;
+        d.onclick = function () { go(+this.dataset.k); };
+        dotsWrap.appendChild(d);
+      }
+      var dots = dotsWrap.children;
+      function go(n) { i = (n + slides) % slides; track.style.transform = "translateX(-" + (i * 100) + "%)"; for (var j = 0; j < dots.length; j++) dots[j].classList.toggle("active", j === i); }
+      document.getElementById("mscPrev").onclick = function () { go(i - 1); };
+      document.getElementById("mscNext").onclick = function () { go(i + 1); };
+      var timer = setInterval(function () { go(i + 1); }, 5000);
+      track.parentElement.addEventListener("mouseenter", function () { clearInterval(timer); });
+    })();
+
+    /* ── SCROLL REVEAL ANIMATION ── */
+    (function () {
+      var sel = ".category-card, .product-card, .promo-banner, .stat, .hero-content, .promo-item";
+      var els = document.querySelectorAll(sel);
+      els.forEach(function (el) { el.classList.add("reveal"); });
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+        }, { threshold: 0.12 });
+        els.forEach(function (el) { io.observe(el); });
+      } else { els.forEach(function (el) { el.classList.add("in"); }); }
+    })();
+  </script>
 
   <!-- ✅ ZOOM VIRTUAL AGENT — KAMPANYA EMBED -->
   <script type="module" src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js" data-apikey="X_5tQUCYQ9GOgMYLOksajA" data-env="us01"></script>
