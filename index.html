@@ -864,8 +864,29 @@
     </div>
   </footer>
 
-  <!-- ✅ ZOOM VIRTUAL AGENT EMBED -->
-  <script type="module" src="https://us01ccistatic.zoom.us/us01cci/web-sdk/chat-client.js" data-apikey="X_5tQUCYQ9GOgMYLOksajA" data-env="us01"></script>
+  <!-- ✅ ZOOM VIRTUAL AGENT — KAMPANYA EMBED -->
+  <script type="module" src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js" data-apikey="X_5tQUCYQ9GOgMYLOksajA" data-env="us01"></script>
+  <script>
+    /* ZVA otomatik açılış — sayfa yüklenince kampanya davetini göstermeye çalışır.
+       NOT: Sohbetin tam otomatik açılması Zoom admin panelindeki Kampanya
+       ayarlarından ("başlatma tetikleyicisi = sayfa yüklendiğinde") kontrol edilir. */
+    (function () {
+      var tries = 0;
+      var timer = setInterval(function () {
+        tries++;
+        var sdk = window.zoomCampaignSdk || window.ZoomCampaignSdk || window.zCCSDK;
+        if (sdk && typeof sdk.show === 'function') {
+          clearInterval(timer);
+          try {
+            if (typeof sdk.waitForReady === 'function') {
+              sdk.waitForReady().then(function () { try { sdk.show(); } catch (e) {} });
+            } else { sdk.show(); }
+          } catch (e) {}
+        }
+        if (tries > 40) clearInterval(timer); /* ~20 sn sonra dur */
+      }, 500);
+    })();
+  </script>
 
 </body>
 </html>
