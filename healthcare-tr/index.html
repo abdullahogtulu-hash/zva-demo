@@ -287,7 +287,7 @@
     .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 6px; font-weight: 500; }
 
     /* ── DEPARTMENTS SECTION ── */
-    .departments { background: var(--light); padding: 60px 40px; }
+    .departments { background: var(--light); padding: 60px 40px; scroll-margin-top: 90px; }
     .section-header { text-align: center; margin-bottom: 44px; }
     .section-header h2 { font-size: 2.1rem; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
     .section-header p { color: var(--grey); font-size: 1rem; }
@@ -350,11 +350,13 @@
     .pcarousel-btn.next { right: -6px; }
 
     /* ── DOCTORS SECTION ── */
-    .doctors-section { background: white; padding: 60px 40px; }
+    .doctors-section { background: white; padding: 60px 40px; scroll-margin-top: 90px; }
     .doctors-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
     .doctor-card {
       background: var(--light);
@@ -365,17 +367,20 @@
     }
     .doctor-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
     .doctor-img {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5.5rem;
+      height: 260px;
       position: relative;
+      overflow: hidden;
+      background: #e0f2f1;
     }
-    .doc-img-1 { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
-    .doc-img-2 { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
-    .doc-img-3 { background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%); }
-    .doc-img-4 { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
+    .doctor-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .doctor-card:hover .doctor-img img { transform: scale(1.05); }
     .doc-status {
       position: absolute;
       bottom: 14px; right: 14px;
@@ -461,7 +466,7 @@
     .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,137,123,0.5); }
 
     /* ── HEALTH SERVICES ── */
-    .services-section { background: var(--light); padding: 60px 40px; }
+    .services-section { background: var(--light); padding: 60px 40px; scroll-margin-top: 90px; }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -585,6 +590,61 @@
       0%, 100% { transform: translateY(0); box-shadow: 0 6px 24px rgba(0,137,123,0.5); }
       50% { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,137,123,0.7); }
     }
+    /* ── HASTA GİRİŞİ / PORTAL ── */
+    .hg-overlay { position: fixed; inset: 0; background: rgba(6,25,22,0.6); backdrop-filter: blur(4px); display: none; align-items: flex-start; justify-content: center; z-index: 3000; padding: 40px 20px; overflow-y: auto; }
+    .hg-overlay.open { display: flex; }
+    .hg-card { background: #fff; width: 100%; max-width: 400px; border-radius: 18px; padding: 34px; box-shadow: 0 24px 60px rgba(0,0,0,0.35); animation: hgIn .35s ease; }
+    @keyframes hgIn { from { opacity: 0; transform: translateY(20px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .hg-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .hg-logo-icon { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg,var(--teal),var(--teal-d)); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .hg-logo-txt { font-size: 1.25rem; font-weight: 800; color: var(--dark); }
+    .hg-logo-txt span { color: var(--teal); }
+    .hg-card h3 { font-size: 1.15rem; margin: 14px 0 4px; color: var(--dark); }
+    .hg-card .hg-sub { font-size: .85rem; color: var(--grey); margin-bottom: 20px; }
+    .hg-field { margin-bottom: 14px; }
+    .hg-field label { display: block; font-size: .78rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .hg-field input { width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: .92rem; outline: none; transition: border-color .2s; }
+    .hg-field input:focus { border-color: var(--teal); }
+    .hg-submit { width: 100%; background: linear-gradient(135deg,var(--teal),var(--teal-d)); color: #fff; border: none; padding: 13px; border-radius: 10px; font-weight: 700; font-size: .95rem; cursor: pointer; margin-top: 6px; transition: transform .2s; }
+    .hg-submit:hover { transform: translateY(-2px); }
+    .hg-close { float: right; background: none; border: none; font-size: 1.5rem; color: var(--grey); cursor: pointer; line-height: 1; }
+    .hg-error { background: #fdecea; color: #c62828; font-size: .82rem; padding: 10px 12px; border-radius: 9px; margin-bottom: 14px; display: none; }
+    .hg-error.show { display: block; }
+    .hg-welcome { position: fixed; bottom: 24px; left: 24px; background: #2e7d32; color: #fff; padding: 13px 20px; border-radius: 12px; font-weight: 600; font-size: .9rem; box-shadow: 0 10px 30px rgba(46,125,50,.4); z-index: 3000; transform: translateY(160%); transition: transform .4s ease; }
+    .hg-welcome.show { transform: translateY(0); }
+    /* Portal */
+    .pt-card { background: #fff; width: 100%; max-width: 820px; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.35); animation: hgIn .35s ease; }
+    .pt-head { background: linear-gradient(120deg,var(--teal-d),var(--teal)); color: #fff; padding: 28px 32px; display: flex; align-items: center; gap: 18px; position: relative; }
+    .pt-close { position: absolute; top: 18px; right: 20px; background: rgba(255,255,255,.2); border: none; color: #fff; width: 34px; height: 34px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; line-height: 1; }
+    .pt-avatar { width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-size: 1.7rem; font-weight: 800; flex-shrink: 0; }
+    .pt-head h2 { font-size: 1.4rem; margin: 0; }
+    .pt-head .em { opacity: .9; font-size: .88rem; }
+    .pt-head .pid { font-size: .76rem; opacity: .85; margin-top: 4px; }
+    .pt-tabs { display: flex; border-bottom: 1px solid #e2e8f0; padding: 0 16px; gap: 4px; flex-wrap: wrap; }
+    .pt-tab { background: none; border: none; padding: 14px 16px; font-size: .88rem; font-weight: 700; color: var(--grey); cursor: pointer; border-bottom: 3px solid transparent; }
+    .pt-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+    .pt-body { padding: 22px 32px; max-height: 52vh; overflow-y: auto; }
+    .pt-panel { display: none; } .pt-panel.active { display: block; }
+    .appt-row, .res-row { border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; }
+    .appt-date { flex: 0 0 66px; text-align: center; background: var(--light); border-radius: 10px; padding: 10px 6px; }
+    .appt-date .d { font-size: 1.4rem; font-weight: 800; color: var(--teal); line-height: 1; }
+    .appt-date .m { font-size: .7rem; color: var(--grey); text-transform: uppercase; }
+    .appt-main { flex: 1; }
+    .appt-main .t { font-weight: 700; margin-bottom: 3px; }
+    .appt-main .s { font-size: .82rem; color: var(--grey); }
+    .appt-badge { font-size: .72rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
+    .b-onaylı { background: #e8f5e9; color: #2e7d32; }
+    .b-bekliyor { background: #fff8e1; color: #a16207; }
+    .res-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--light); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .res-main { flex: 1; } .res-main .t { font-weight: 700; } .res-main .s { font-size: .8rem; color: var(--grey); }
+    .res-status { font-size: .74rem; font-weight: 700; color: #2e7d32; }
+    .pt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .pt-info { background: var(--light); border-radius: 12px; padding: 15px 16px; }
+    .pt-info .lab { font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--grey); margin-bottom: 5px; }
+    .pt-info .val { font-weight: 700; color: var(--dark); }
+    .pt-logout { margin: 4px 32px 24px; background: #fdecea; color: #c62828; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; width: calc(100% - 64px); }
+    .pt-logout:hover { background: #f9d7d4; }
+    @media (max-width: 620px) { .pt-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -598,8 +658,8 @@
   </div>
   <div class="topbar-right">
     <span class="emergency-btn">🚨 Acil: 112</span>
-    <a href="#">Hasta Girişi</a>
-    <a href="#">Sonuçlarım</a>
+    <a href="#" id="hgBtn" onclick="hgClick(event)"><span id="hgLabel">Hasta Girişi</span></a>
+    <a href="#" onclick="hgResults(event)">Sonuçlarım</a>
     <a href="#">İletişim</a>
   </div>
 </div>
@@ -611,9 +671,9 @@
     <div class="logo-text">Med<span>Ya</span> Sağlık</div>
   </a>
   <ul class="nav-links">
-    <li><a href="#">Bölümlerimiz</a></li>
-    <li><a href="#">Doktorlarımız</a></li>
-    <li><a href="#">Hizmetler</a></li>
+    <li><a href="#bolumler">Bölümlerimiz</a></li>
+    <li><a href="#doktorlar">Doktorlarımız</a></li>
+    <li><a href="#hizmetler">Hizmetler</a></li>
     <li><a href="#">Online İşlemler</a></li>
     <li><a href="#">Hakkımızda</a></li>
   </ul>
@@ -745,7 +805,7 @@
 </div>
 
 <!-- Departments Carousel -->
-<div class="departments">
+<div class="departments" id="bolumler">
   <div class="section-header">
     <div class="tag">Bölümlerimiz</div>
     <h2>Uzman Kliniklerimiz</h2>
@@ -761,7 +821,7 @@
 </div>
 
 <!-- Doctors Section -->
-<div class="doctors-section">
+<div class="doctors-section" id="doktorlar">
   <div class="section-header">
     <div class="tag">Doktorlarımız</div>
     <h2>Uzman Kadromuzla Tanışın</h2>
@@ -831,7 +891,7 @@
 </div>
 
 <!-- Services Section -->
-<div class="services-section">
+<div class="services-section" id="hizmetler">
   <div class="section-header">
     <div class="tag">Hizmetlerimiz</div>
     <h2>Kapsamlı Sağlık Hizmetleri</h2>
@@ -966,8 +1026,6 @@
   </div>
 </footer>
 
-<!-- Floating Button -->
-<button class="float-appt">📅 Randevu Al</button>
 
 <!-- SCRIPTS -->
 <script>
@@ -1021,20 +1079,24 @@
     deptTrack.style.transform = `translateX(-${deptIdx * deptCardW}px)`;
   });
 
-  // Doctors Data
+  // Doctors Data (gerçek doktor fotoğrafları, cinsiyete uygun)
+  const IMG = 'https://images.unsplash.com/';
+  const IMGQ = '?w=400&h=440&fit=crop&crop=faces';
   const doctors = [
-    { emoji:'👨‍⚕️', bg:'doc-img-1', name:'Prof. Dr. Ahmet Yılmaz', title:'Kardiyoloji Uzmanı', exp:'20 yıl', rating:'4.9', count:'1.234' },
-    { emoji:'👩‍⚕️', bg:'doc-img-2', name:'Doç. Dr. Fatma Kaya', title:'Nöroloji Uzmanı', exp:'15 yıl', rating:'4.8', count:'987' },
-    { emoji:'👨‍⚕️', bg:'doc-img-3', name:'Op. Dr. Kerem Demir', title:'Ortopedi Uzmanı', exp:'12 yıl', rating:'4.7', count:'765' },
-    { emoji:'👩‍⚕️', bg:'doc-img-4', name:'Uzm. Dr. Zeynep Arslan', title:'Pediatri Uzmanı', exp:'10 yıl', rating:'4.9', count:'2.103' },
+    { photo:'photo-1637059824899-a441006a6875', name:'Prof. Dr. Ahmet Yılmaz',  title:'Kardiyoloji Uzmanı',   exp:'20 yıl', rating:'4.9', count:'1.234' },
+    { photo:'photo-1559839734-2b71ea197ec2',   name:'Doç. Dr. Fatma Kaya',      title:'Nöroloji Uzmanı',      exp:'15 yıl', rating:'4.8', count:'987'   },
+    { photo:'photo-1612349317150-e413f6a5b16d', name:'Op. Dr. Kerem Demir',      title:'Ortopedi Uzmanı',      exp:'12 yıl', rating:'4.7', count:'765'   },
+    { photo:'photo-1594824476967-48c8b964273f', name:'Uzm. Dr. Zeynep Arslan',   title:'Pediatri Uzmanı',      exp:'10 yıl', rating:'4.9', count:'2.103' },
+    { photo:'photo-1622253692010-333f2da6031d', name:'Doç. Dr. Mehmet Öztürk',   title:'Genel Cerrahi Uzmanı', exp:'14 yıl', rating:'4.8', count:'1.045' },
+    { photo:'photo-1651008376811-b90baee60c1f', name:'Uzm. Dr. Elif Şahin',      title:'Kadın Doğum Uzmanı',   exp:'11 yıl', rating:'4.9', count:'1.312' },
   ];
 
   const grid = document.getElementById('doctorsGrid');
   doctors.forEach(d => {
     grid.insertAdjacentHTML('beforeend', `
       <div class="doctor-card">
-        <div class="doctor-img ${d.bg}">
-          <span>${d.emoji}</span>
+        <div class="doctor-img">
+          <img src="${IMG}${d.photo}${IMGQ}" alt="${d.name}" loading="lazy" />
           <div class="doc-status">● Randevu Açık</div>
         </div>
         <div class="doctor-info">
@@ -1049,6 +1111,118 @@
         </div>
       </div>`);
   });
+</script>
+
+<!-- HASTA GİRİŞİ MODAL -->
+<div class="hg-overlay" id="hgOverlay">
+  <div class="hg-card">
+    <button class="hg-close" onclick="hgClose()" aria-label="Kapat">&times;</button>
+    <div class="hg-head"><div class="hg-logo-icon">🏥</div><div class="hg-logo-txt">Med<span>Ya</span> Sağlık</div></div>
+    <h3>Hasta Girişi</h3>
+    <div class="hg-sub">Randevularınıza ve tahlil sonuçlarınıza erişmek için giriş yapın.</div>
+    <div class="hg-error" id="hgError">E-posta veya şifre hatalı. Lütfen tekrar deneyin.</div>
+    <form id="hgForm" autocomplete="off">
+      <div class="hg-field"><label for="hgEmail">E-posta</label><input type="email" id="hgEmail" placeholder="ornek@eposta.com" required /></div>
+      <div class="hg-field"><label for="hgPass">Şifre</label><input type="password" id="hgPass" placeholder="••••••••" required /></div>
+      <button type="submit" class="hg-submit">Giriş Yap</button>
+    </form>
+  </div>
+</div>
+
+<!-- HASTA PORTALI -->
+<div class="hg-overlay" id="ptOverlay">
+  <div class="pt-card">
+    <div class="pt-head">
+      <button class="pt-close" onclick="ptClose()" aria-label="Kapat">&times;</button>
+      <div class="pt-avatar" id="ptAvatar">A</div>
+      <div><h2 id="ptName">—</h2><div class="em" id="ptEmail">—</div><div class="pid">Hasta No: MY-2023-04821 · MedYa Sağlık</div></div>
+    </div>
+    <div class="pt-tabs">
+      <button class="pt-tab active" data-tab="appts" onclick="ptTab('appts')">📅 Randevularım</button>
+      <button class="pt-tab" data-tab="results" onclick="ptTab('results')">🧪 Tahlil Sonuçlarım</button>
+      <button class="pt-tab" data-tab="info" onclick="ptTab('info')">👤 Bilgilerim</button>
+    </div>
+    <div class="pt-body">
+      <div class="pt-panel active" id="pt-appts"></div>
+      <div class="pt-panel" id="pt-results"></div>
+      <div class="pt-panel" id="pt-info"></div>
+    </div>
+    <button class="pt-logout" onclick="hgLogout()">🚪 Çıkış Yap</button>
+  </div>
+</div>
+<div class="hg-welcome" id="hgWelcome"></div>
+
+<script>
+  /* ── DEMO HASTA VERİTABANI (istemci tarafı) ── */
+  var MEDYA_USERS = [ { email:"abdullah.ogtulu@zoom.us", password:"Demo123", name:"Abdullah Ogtulu" } ];
+  var MEDYA_KEY = "medya_current_user";
+  var MEDYA_APPTS = [
+    { d:"29", m:"Tem", t:"Kardiyoloji — Kontrol Muayenesi", s:"Prof. Dr. Ahmet Yılmaz · 10:30 · 3. Kat, Oda 312", b:"onaylı", bl:"Onaylandı" },
+    { d:"14", m:"Ağu", t:"Göz Hastalıkları — Rutin Muayene", s:"Uzm. Dr. Deniz Ak · 14:00 · 2. Kat, Oda 208", b:"bekliyor", bl:"Onay Bekliyor" },
+    { d:"03", m:"Eyl", t:"Check-Up — Yıllık Tarama", s:"Check-Up Merkezi · 09:00 · Zemin Kat", b:"onaylı", bl:"Onaylandı" }
+  ];
+  var MEDYA_RESULTS = [
+    { ic:"🩸", t:"Tam Kan Sayımı (Hemogram)", s:"21 Temmuz 2026 · Merkez Laboratuvar", st:"Hazır" },
+    { ic:"🧪", t:"Biyokimya Paneli", s:"21 Temmuz 2026 · Merkez Laboratuvar", st:"Hazır" },
+    { ic:"❤️", t:"EKG & Efor Testi", s:"18 Temmuz 2026 · Kardiyoloji", st:"Hazır" },
+    { ic:"🫁", t:"Akciğer Grafisi (Röntgen)", s:"18 Temmuz 2026 · Radyoloji", st:"Hazır" }
+  ];
+  var MEDYA_PROFILE = { phone:"+90 532 123 45 67", tc:"•••••••• 42", blood:"A Rh+", insurance:"Özel Sağlık Sigortası — GüvenSigorta", pid:"MY-2023-04821" };
+
+  function hgGet(){ try { return JSON.parse(localStorage.getItem(MEDYA_KEY)); } catch(e){ return null; } }
+  function hgRender(){ var u=hgGet(); document.getElementById("hgLabel").textContent = u ? ("Merhaba, "+u.name.split(" ")[0]) : "Hasta Girişi"; }
+  function hgClick(e){ e.preventDefault(); var u=hgGet(); if(u){ openPortal(u); } else { openLogin(); } }
+  function hgResults(e){ e.preventDefault(); var u=hgGet(); if(u){ openPortal(u); ptTab('results'); } else { openLogin(); } }
+  function openLogin(){ document.getElementById("hgOverlay").classList.add("open"); }
+  function hgClose(){ document.getElementById("hgOverlay").classList.remove("open"); document.getElementById("hgError").classList.remove("show"); document.getElementById("hgForm").reset(); }
+  function hgLogout(){ localStorage.removeItem(MEDYA_KEY); ptClose(); hgRender(); }
+  document.getElementById("hgOverlay").addEventListener("click", function(e){ if(e.target===this) hgClose(); });
+  document.getElementById("hgForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var email=document.getElementById("hgEmail").value.trim().toLowerCase();
+    var pass=document.getElementById("hgPass").value;
+    var m=MEDYA_USERS.find(function(x){ return x.email.toLowerCase()===email && x.password===pass; });
+    if(m){
+      localStorage.setItem(MEDYA_KEY, JSON.stringify({ email:m.email, name:m.name }));
+      hgClose(); hgRender();
+      var w=document.getElementById("hgWelcome"); w.textContent="✓ Hoş geldiniz, "+m.name+"!"; w.classList.add("show");
+      setTimeout(function(){ w.classList.remove("show"); }, 4000);
+      openPortal({ email:m.email, name:m.name });
+    } else { document.getElementById("hgError").classList.add("show"); }
+  });
+
+  function openPortal(u){
+    document.getElementById("ptName").textContent=u.name;
+    document.getElementById("ptEmail").textContent=u.email;
+    document.getElementById("ptAvatar").textContent=u.name.charAt(0).toUpperCase();
+    document.getElementById("pt-appts").innerHTML = MEDYA_APPTS.map(function(a){
+      return '<div class="appt-row"><div class="appt-date"><div class="d">'+a.d+'</div><div class="m">'+a.m+'</div></div>'+
+        '<div class="appt-main"><div class="t">'+a.t+'</div><div class="s">'+a.s+'</div></div>'+
+        '<div class="appt-badge b-'+a.b+'">'+a.bl+'</div></div>';
+    }).join('');
+    document.getElementById("pt-results").innerHTML = MEDYA_RESULTS.map(function(r){
+      return '<div class="res-row"><div class="res-icon">'+r.ic+'</div>'+
+        '<div class="res-main"><div class="t">'+r.t+'</div><div class="s">'+r.s+'</div></div>'+
+        '<div class="res-status">● '+r.st+' <span style="color:var(--teal)">↓ İndir</span></div></div>';
+    }).join('');
+    document.getElementById("pt-info").innerHTML = '<div class="pt-grid">'+
+      '<div class="pt-info"><div class="lab">Ad Soyad</div><div class="val">'+u.name+'</div></div>'+
+      '<div class="pt-info"><div class="lab">E-posta</div><div class="val">'+u.email+'</div></div>'+
+      '<div class="pt-info"><div class="lab">Telefon</div><div class="val">'+MEDYA_PROFILE.phone+'</div></div>'+
+      '<div class="pt-info"><div class="lab">T.C. Kimlik No</div><div class="val">'+MEDYA_PROFILE.tc+'</div></div>'+
+      '<div class="pt-info"><div class="lab">Kan Grubu</div><div class="val">'+MEDYA_PROFILE.blood+'</div></div>'+
+      '<div class="pt-info"><div class="lab">Sigorta</div><div class="val">'+MEDYA_PROFILE.insurance+'</div></div>'+
+      '</div>';
+    ptTab('appts');
+    document.getElementById("ptOverlay").classList.add("open");
+  }
+  function ptClose(){ document.getElementById("ptOverlay").classList.remove("open"); }
+  function ptTab(name){
+    document.querySelectorAll(".pt-tab").forEach(function(t){ t.classList.toggle("active", t.dataset.tab===name); });
+    document.querySelectorAll(".pt-panel").forEach(function(p){ p.classList.toggle("active", p.id==="pt-"+name); });
+  }
+  document.getElementById("ptOverlay").addEventListener("click", function(e){ if(e.target===this) ptClose(); });
+  hgRender();
 </script>
 
 <!-- Zoom Virtual Agent -->
