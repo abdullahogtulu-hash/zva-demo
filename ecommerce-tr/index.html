@@ -1057,10 +1057,16 @@
   </div>
 
   <script>
-    /* ── DEMO KULLANICI VERİTABANI (istemci tarafı) ── */
-    var MS_USERS = [
-      { email: "abdullah.ogtulu@zoom.us", password: "Demo123", name: "Abdullah Ogtulu" }
-    ];
+    /* ── DEMO GİRİŞ DOĞRULAMASI ──
+       Güvenlik: e-posta ve şifre düz metin olarak SAKLANMAZ. Yalnızca
+       SHA-256("eposta:şifre") özeti tutulur; sayfa kaynağını inceleyen biri
+       bu özetten şifreyi doğrudan okuyamaz. (Statik sitede tam güvenlik için
+       sunucu tarafı kimlik doğrulama gerekir.) */
+    var MS_AUTH = { hash: "f37e7b5cb03e8ef560ac16bc0707b7882866d0dd0834923f8af43c1eafada29a", name: "Abdullah Ogtulu" };
+    async function msSha256(str){
+      var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+    }
     /* ── SAHTE HESAP & SİPARİŞ VERİSİ (demo) ── */
     var MS_PROFILE = {
       phone: "+90 532 123 45 67",
@@ -1163,17 +1169,17 @@
     document.getElementById("loginOverlay").addEventListener("click", function (e) {
       if (e.target === this) closeLogin();
     });
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
       e.preventDefault();
       var email = document.getElementById("loginEmail").value.trim().toLowerCase();
       var pass = document.getElementById("loginPass").value;
-      var match = MS_USERS.find(function (x) { return x.email.toLowerCase() === email && x.password === pass; });
-      if (match) {
-        localStorage.setItem(MS_SESSION_KEY, JSON.stringify({ email: match.email, name: match.name }));
+      var digest = await msSha256(email + ":" + pass);
+      if (digest === MS_AUTH.hash) {
+        localStorage.setItem(MS_SESSION_KEY, JSON.stringify({ email: email, name: MS_AUTH.name }));
         closeLogin();
         msRenderAuth();
         var w = document.getElementById("loginWelcome");
-        w.textContent = "✓ Hoş geldiniz, " + match.name + "!";
+        w.textContent = "✓ Hoş geldiniz, " + MS_AUTH.name + "!";
         w.classList.add("show");
         setTimeout(function () { w.classList.remove("show"); }, 4000);
       } else {
