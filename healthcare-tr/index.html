@@ -1153,8 +1153,16 @@
 <div class="hg-welcome" id="hgWelcome"></div>
 
 <script>
-  /* ── DEMO HASTA VERİTABANI (istemci tarafı) ── */
-  var MEDYA_USERS = [ { email:"abdullah.ogtulu@zoom.us", password:"Demo123", name:"Abdullah Ogtulu" } ];
+  /* ── DEMO GİRİŞ DOĞRULAMASI ──
+     Güvenlik: e-posta ve şifre düz metin olarak SAKLANMAZ. Yalnızca
+     SHA-256("eposta:şifre") özeti tutulur; sayfa kaynağını inceleyen biri
+     bu özetten şifreyi doğrudan okuyamaz. (Statik sitede tam güvenlik için
+     sunucu tarafı kimlik doğrulama gerekir.) */
+  var MEDYA_AUTH = { hash:"f37e7b5cb03e8ef560ac16bc0707b7882866d0dd0834923f8af43c1eafada29a", name:"Abdullah Ogtulu" };
+  async function medyaSha256(str){
+    var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+  }
   var MEDYA_KEY = "medya_current_user";
   var MEDYA_APPTS = [
     { d:"29", m:"Tem", t:"Kardiyoloji — Kontrol Muayenesi", s:"Prof. Dr. Ahmet Yılmaz · 10:30 · 3. Kat, Oda 312", b:"onaylı", bl:"Onaylandı" },
@@ -1177,17 +1185,17 @@
   function hgClose(){ document.getElementById("hgOverlay").classList.remove("open"); document.getElementById("hgError").classList.remove("show"); document.getElementById("hgForm").reset(); }
   function hgLogout(){ localStorage.removeItem(MEDYA_KEY); ptClose(); hgRender(); }
   document.getElementById("hgOverlay").addEventListener("click", function(e){ if(e.target===this) hgClose(); });
-  document.getElementById("hgForm").addEventListener("submit", function(e){
+  document.getElementById("hgForm").addEventListener("submit", async function(e){
     e.preventDefault();
     var email=document.getElementById("hgEmail").value.trim().toLowerCase();
     var pass=document.getElementById("hgPass").value;
-    var m=MEDYA_USERS.find(function(x){ return x.email.toLowerCase()===email && x.password===pass; });
-    if(m){
-      localStorage.setItem(MEDYA_KEY, JSON.stringify({ email:m.email, name:m.name }));
+    var digest=await medyaSha256(email + ":" + pass);
+    if(digest === MEDYA_AUTH.hash){
+      localStorage.setItem(MEDYA_KEY, JSON.stringify({ email:email, name:MEDYA_AUTH.name }));
       hgClose(); hgRender();
-      var w=document.getElementById("hgWelcome"); w.textContent="✓ Hoş geldiniz, "+m.name+"!"; w.classList.add("show");
+      var w=document.getElementById("hgWelcome"); w.textContent="✓ Hoş geldiniz, "+MEDYA_AUTH.name+"!"; w.classList.add("show");
       setTimeout(function(){ w.classList.remove("show"); }, 4000);
-      openPortal({ email:m.email, name:m.name });
+      openPortal({ email:email, name:MEDYA_AUTH.name });
     } else { document.getElementById("hgError").classList.add("show"); }
   });
 
